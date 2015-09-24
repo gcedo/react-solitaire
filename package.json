@@ -1,0 +1,16 @@
+{
+  "name": "react-solitaire",
+  "version": "1.0.0",
+  "description": "Solitaire card game implemented in React",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "react",
+    "solitaire",
+    "game"
+  ],
+  "author": "Edoardo Colombo <edo.gcolombo@gmail.com>",
+  "license": "MIT"
+}
