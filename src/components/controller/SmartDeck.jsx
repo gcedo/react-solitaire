@@ -3,14 +3,15 @@ import Card, { Suits, Ranks } from '../display/Card.jsx';
 import UpturnedCard from '../display/UpturnedCard.jsx';
 import Deck from '../display/Deck.jsx';
 import head from 'lodash/array/head';
-import { Stack } from 'immutable';
+import { List } from 'immutable';
 
 class SmartDeck extends React.Component {
+
     constructor(props) {
         super(props);
         this.state = {
-            cards: Stack(props.cards),
-            upturnedCards: Stack()
+            cards: List(props.cards),
+            upturnedCards: List()
         }
     }
 
@@ -24,19 +25,26 @@ class SmartDeck extends React.Component {
         ))
     }
 
-    handleClick = () => {
+    handleClickOnDeck = () => {
         const { cards, upturnedCards } = this.state;
-        this.setState({
-            cards: cards.shift(),
-            upturnedCards: upturnedCards.push(cards.first())
-        })
+        if (cards.isEmpty()) {
+            this.setState({
+                cards: List(upturnedCards),
+                upturnedCards: List()
+            })
+        } else {
+            this.setState({
+                cards: cards.shift(),
+                upturnedCards: upturnedCards.push(cards.first())
+            })
+        }
     }
 
     render() {
         const firstCard = this.state.cards.first();
         return (
-            <div onClick={this.handleClick}>
-                <Deck>
+            <div>
+                <Deck onClick={this.handleClickOnDeck}>
                     <Card />
                 </Deck>
                 <UpturnedCard>

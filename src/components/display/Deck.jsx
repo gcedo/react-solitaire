@@ -1,9 +1,18 @@
-import React from 'react';
+import React, { PropTypes as T } from 'react';
 
-const Deck = (props) => {
+const Deck = ({ onClick, children }) => {
     return (
-        <div>{props.children}</div>
+        <div onClick={onClick}>{children}</div>
     );
+}
+
+Deck.propTypes = {
+    onClick: T.func,
+    children: T.element
+};
+
+Deck.defaultProps = {
+    onClick: () => {}
 }
 
 export default Deck;
