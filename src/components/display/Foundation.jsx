@@ -3,8 +3,8 @@ import React from 'react';
 const Foundation = ({ children }) => {
     return (
         <div style={{
-            backgroundColor: '#f5f5f5',
-            border: '1px solid black',
+            backgroundColor: '#388E3C',
+            border: '1px solid #388E3C',
             borderRadius: 2,
             borderStyle: 'dotted',
             boxSizing: 'border-box',

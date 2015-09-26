@@ -17,7 +17,7 @@ class Game extends React.Component {
         return (
             <div style={{
                 width: 957,
-                backgroundColor: 'green',
+                backgroundColor: '#4CAF50',
                 padding: 10
 
             }}>
