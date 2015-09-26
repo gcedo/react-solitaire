@@ -43,7 +43,11 @@ class SmartDeck extends React.Component {
     render() {
         const firstCard = this.state.cards.first();
         return (
-            <div>
+            <div style={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                width: 270
+            }}>
                 <Deck onClick={this.handleClickOnDeck}>
                     <Card />
                 </Deck>

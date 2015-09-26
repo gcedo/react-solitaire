@@ -1,4 +1,4 @@
-import React, {PropTypes as T} from 'react';
+import React, { PropTypes as T } from 'react';
 
 export const Suits = {
     SPADES: '♠',
@@ -7,16 +7,30 @@ export const Suits = {
     CLUBS: '♣'
 };
 
-export const Ranks = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
+export const Ranks = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
 
+export const Colors = {
+    SPADES: 'black',
+    HEARTS: 'red',
+    DIAMONDS: 'red',
+    CLUBS: 'black'
+};
 
-const Card = ({rank, suit, upturned}) => {
+const Card = ({rank, suit, upturned, style}) => {
+    const _style = {
+        backgroundColor: upturned ? 'yellow' : 'gray',
+        border: '1px solid black',
+        borderRadius: 1,
+        boxSizing: 'border-box',
+        color: Colors[suit],
+        padding: 10,
+        width: 125,
+        height: 175,
+        ...style
+    };
+
     return (
-        <div style={{
-            backgroundColor: upturned ? 'yellow' : 'gray',
-            width: 125,
-            height: 175
-        }}>
+        <div style={_style}>
             {upturned && rank}
             {upturned && Suits[suit]}
         </div>
