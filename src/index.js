@@ -1,10 +1,12 @@
 import ReactDOM from 'react-dom';
 import React from 'react';
+import Game from './components/controller/Game.jsx';
 import Card, { Suits, Ranks } from './components/display/Card.jsx';
 import Deck from './components/display/Deck.jsx';
 import SmartDeck from './components/controller/SmartDeck.jsx';
 import Pile from './components/display/Pile.jsx';
 import SmartPile from './components/controller/SmartPile.jsx';
+import Foundation from './components/display/Foundation.jsx';
 
 let cards = [];
 Object.keys(Suits).forEach(suit => {
@@ -12,6 +14,10 @@ Object.keys(Suits).forEach(suit => {
         cards.push({ rank, suit })
     })
 })
+
+ReactDOM.render(
+    <Game />, document.getElementById('game')
+);
 
 ReactDOM.render(
     <Card rank="A" suit="HEARTS" upturned/>, document.getElementById('card')
@@ -41,4 +47,8 @@ ReactDOM.render(
 
 ReactDOM.render(
     <SmartPile cards={cards.slice(0, 4)} />, document.getElementById('smart-pile')
+);
+
+ReactDOM.render(
+    <Foundation />, document.getElementById('foundation')
 );

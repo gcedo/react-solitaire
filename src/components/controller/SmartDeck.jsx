@@ -46,7 +46,7 @@ class SmartDeck extends React.Component {
             <div style={{
                 display: 'flex',
                 justifyContent: 'space-between',
-                width: 270
+                width: 264
             }}>
                 <Deck onClick={this.handleClickOnDeck}>
                     <Card />

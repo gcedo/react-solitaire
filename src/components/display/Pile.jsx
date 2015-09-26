@@ -9,7 +9,7 @@ const Pile = ({ children }) => {
     });
 
     return (
-        <div style={{ position: 'relative', height: 175 + 5 * cards.length }}>
+        <div style={{ position: 'relative', height: 175 + 5 * cards.length, width: 125 }}>
             {cards}
         </div>
     );
