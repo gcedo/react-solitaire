@@ -1,21 +1,41 @@
 import React, { PropTypes as T } from 'react';
 import Card, { Ranks, Suits } from '../display/Card.jsx';
 import { DragSource } from 'react-dnd';
+import { DropTarget } from 'react-dnd';
 
 const cardSource = {
   beginDrag(props) {
-    return {};
+    return {
+        suit: props.suit,
+        rank: props.rank
+    };
   }
 };
 
-function collect(connect, monitor) {
+function collectDrag(connect, monitor) {
   return {
     connectDragSource: connect.dragSource(),
     isDragging: monitor.isDragging()
   }
 }
 
-@DragSource('DraggableCard', cardSource, collect)
+const cardTarget = {
+    drop(props, monitor) {
+        console.log('props', props);
+        console.log('getItem', monitor.getItem())
+    }
+};
+
+function collectDrop(connect, monitor) {
+    return {
+        connectDropTarget: connect.dropTarget(),
+        isOver: monitor.isOver()
+    };
+};
+
+
+@DragSource('DraggableCard', cardSource, collectDrag)
+@DropTarget('DraggableCard', cardTarget, collectDrop)
 export default class DraggableCard extends React.Component {
     static propTypes = {
         rank: T.oneOf(Ranks),
@@ -24,11 +44,11 @@ export default class DraggableCard extends React.Component {
     }
 
     render () {
-        const { connectDragSource } = this.props;
-        return connectDragSource(
+        const { connectDragSource, connectDropTarget } = this.props;
+        return connectDropTarget(connectDragSource(
             <div>
                 <Card {...this.props} />
             </div>
-        );
+        ));
     }
 }

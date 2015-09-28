@@ -4,8 +4,9 @@ import Foundation from '../display/Foundation.jsx';
 import { DropTarget } from 'react-dnd';
 
 const foundationTarget = {
-    drop(props) {
-        console.log(props);
+    drop(props, monitor) {
+        console.log('props', props);
+        console.log('getItem', monitor.getItem())
     }
 };
 
