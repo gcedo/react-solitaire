@@ -1,7 +1,7 @@
 import React from 'react';
 import SmartDeck from './SmartDeck.jsx';
 import SmartPile from  './SmartPile.jsx';
-import Foundation from '../display/Foundation.jsx';
+import SmartFoundation from '../controller/SmartFoundation.jsx';
 import { Suits, Ranks } from '../display/Card.jsx';
 import { DragDropContext } from 'react-dnd';
 import HTML5Backend from 'react-dnd/modules/backends/HTML5';
@@ -21,7 +21,6 @@ class Game extends React.Component {
                 width: 957,
                 backgroundColor: '#4CAF50',
                 padding: 10
-
             }}>
                 <div style={{display: 'flex', justifyContent: 'space-between'}}>
                     <SmartDeck cards={cards} />
@@ -30,10 +29,10 @@ class Game extends React.Component {
                         display: 'flex',
                         justifyContent: 'space-between'
                     }}>
-                        <Foundation />
-                        <Foundation />
-                        <Foundation />
-                        <Foundation />
+                        <SmartFoundation suit="SPADES" />
+                        <SmartFoundation suit="HEARTS" />
+                        <SmartFoundation suit="DIAMONDS" />
+                        <SmartFoundation suit="CLUBS" />
                     </div>
                 </div>
                 <div style={{
