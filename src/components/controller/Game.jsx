@@ -3,6 +3,8 @@ import SmartDeck from './SmartDeck.jsx';
 import SmartPile from  './SmartPile.jsx';
 import Foundation from '../display/Foundation.jsx';
 import { Suits, Ranks } from '../display/Card.jsx';
+import { DragDropContext } from 'react-dnd';
+import HTML5Backend from 'react-dnd/modules/backends/HTML5';
 
 let cards = [];
 Object.keys(Suits).forEach(suit => {
@@ -11,7 +13,7 @@ Object.keys(Suits).forEach(suit => {
     })
 })
 
-
+@DragDropContext(HTML5Backend)
 class Game extends React.Component {
     render() {
         return (

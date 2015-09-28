@@ -2,6 +2,7 @@ import React, { PropTypes as T } from 'react';
 import Pile from '../display/Pile.jsx';
 import { List } from 'immutable';
 import Card, { Ranks, Suits } from '../display/Card.jsx';
+import DraggableCard from './DraggableCard.jsx';
 
 class SmartPile extends React.Component {
     constructor(props) {
@@ -24,9 +25,16 @@ class SmartPile extends React.Component {
 
     render() {
         const { cards } = this.state;
+        const renderedCards = cards.map((card, index) => {
+            if (index === 0) {
+                return <DraggableCard {...card} key={card.suit + card.rank} />;
+            } else {
+                return <Card {...card} key={card.suit + card.rank} />
+            }
+        });
         return (
             <Pile>
-                {cards.map(card => <Card {...card} key={card.suit + card.rank} />)}
+                {renderedCards}
             </Pile>
         );
     }

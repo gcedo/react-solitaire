@@ -4,6 +4,7 @@ import UpturnedCard from '../display/UpturnedCard.jsx';
 import Deck from '../display/Deck.jsx';
 import head from 'lodash/array/head';
 import { List } from 'immutable';
+import DraggableCard from './DraggableCard.jsx';
 
 class SmartDeck extends React.Component {
 
@@ -52,7 +53,7 @@ class SmartDeck extends React.Component {
                     <Card />
                 </Deck>
                 <UpturnedCard>
-                    <Card {...firstCard} upturned />
+                    <DraggableCard {...firstCard} upturned />
                 </UpturnedCard>
             </div>
         );
