@@ -1,6 +1,7 @@
 import React from 'react';
+import { Suits } from './Card.jsx';
 
-const Foundation = ({ children }) => {
+const Foundation = ({ children, suit }) => {
     return (
         <div style={{
             backgroundColor: '#388E3C',
@@ -10,7 +11,15 @@ const Foundation = ({ children }) => {
             boxSizing: 'border-box',
             width: 125,
             height: 175,
+            position: 'relative'
         }}>
+            <div style={{
+                position: 'absolute',
+                top: 50,
+                left: 50
+            }}>
+                {Suits[suit]}
+            </div>
             {children}
         </div>
     );

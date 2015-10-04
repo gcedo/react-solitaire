@@ -24,7 +24,7 @@ export default class SmartFoundation extends React.Component {
     }
 
     render() {
-        const { connectDropTarget, isOver } = this.props;
+        const { connectDropTarget, isOver, suit } = this.props;
         return connectDropTarget(
             <div>
                 <Foundation {...this.props} />
