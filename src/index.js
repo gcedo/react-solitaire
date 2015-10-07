@@ -7,6 +7,9 @@ import SmartDeck from './components/controller/SmartDeck.jsx';
 import Pile from './components/display/Pile.jsx';
 import SmartPile from './components/controller/SmartPile.jsx';
 import Foundation from './components/display/Foundation.jsx';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+import reducers from './reducers';
 
 let cards = [];
 Object.keys(Suits).forEach(suit => {
@@ -15,8 +18,12 @@ Object.keys(Suits).forEach(suit => {
     })
 })
 
+const store = createStore(reducers);
 ReactDOM.render(
-    <Game />, document.getElementById('game')
+    <Provider store={store}>
+        <Game />
+    </Provider>,
+    document.getElementById('game')
 );
 
 ReactDOM.render(

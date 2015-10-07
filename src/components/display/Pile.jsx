@@ -1,7 +1,7 @@
 import React, { PropTypes as T } from 'react';
 
 const Pile = ({ children }) => {
-    const cards = React.Children.map(children.reverse(), (element, index) => {
+    const cards = React.Children.map(children, (element, index) => {
         return React.cloneElement(
             element,
             { style: { position: 'absolute', top: 5 * index } }
@@ -9,7 +9,11 @@ const Pile = ({ children }) => {
     });
 
     return (
-        <div style={{ position: 'relative', height: 175 + 5 * cards.length, width: 125 }}>
+        <div style={{
+            position: 'relative',
+            height: 175 + 5 * cards.length,
+            width: 125
+        }}>
             {cards}
         </div>
     );

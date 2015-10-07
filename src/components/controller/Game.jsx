@@ -2,20 +2,19 @@ import React from 'react';
 import SmartDeck from './SmartDeck.jsx';
 import SmartPile from  './SmartPile.jsx';
 import SmartFoundation from '../controller/SmartFoundation.jsx';
-import { Suits, Ranks } from '../display/Card.jsx';
 import { DragDropContext } from 'react-dnd';
 import HTML5Backend from 'react-dnd/modules/backends/HTML5';
+import range from 'lodash/utility/range';
+import { connect } from 'react-redux';
 
-let cards = [];
-Object.keys(Suits).forEach(suit => {
-    Ranks.forEach(rank => {
-        cards.push({ rank, suit })
-    })
-})
-
+@connect((state) => { return { game: state } })
 @DragDropContext(HTML5Backend)
 class Game extends React.Component {
     render() {
+
+        const game = this.props.game.solitaire.toJS();
+        console.log(game);
+
         return (
             <div style={{
                 width: 957,
@@ -23,16 +22,16 @@ class Game extends React.Component {
                 padding: 10
             }}>
                 <div style={{display: 'flex', justifyContent: 'space-between'}}>
-                    <SmartDeck cards={cards} />
+                    <SmartDeck cards={game.DECK} />
                     <div style={{
                         width: 540,
                         display: 'flex',
                         justifyContent: 'space-between'
                     }}>
-                        <SmartFoundation suit="SPADES" />
-                        <SmartFoundation suit="HEARTS" />
-                        <SmartFoundation suit="DIAMONDS" />
-                        <SmartFoundation suit="CLUBS" />
+                        <SmartFoundation suit="SPADES" cards={game.FOUNDATION.SPADES} />
+                        <SmartFoundation suit="HEARTS" cards={game.FOUNDATION.HEARTS} />
+                        <SmartFoundation suit="DIAMONDS" cards={game.FOUNDATION.DIAMONDS} />
+                        <SmartFoundation suit="CLUBS" cards={game.FOUNDATION.CLUBS} />
                     </div>
                 </div>
                 <div style={{
@@ -41,13 +40,11 @@ class Game extends React.Component {
                     width: '100%',
                     marginTop: 40
                 }}>
-                    <SmartPile cards={cards.splice(0,1) } />
-                    <SmartPile cards={cards.splice(0,2) } />
-                    <SmartPile cards={cards.splice(0,3) } />
-                    <SmartPile cards={cards.splice(0,4) } />
-                    <SmartPile cards={cards.splice(0,5) } />
-                    <SmartPile cards={cards.splice(0,6) } />
-                    <SmartPile cards={cards.splice(0,7) } />
+                {
+                    range(0, 6).map(index =>
+                        <SmartPile cards={game.PILE[index]} index={index} key={index} />
+                    )
+                }
                 </div>
             </div>
         );

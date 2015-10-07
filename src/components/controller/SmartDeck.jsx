@@ -53,7 +53,7 @@ class SmartDeck extends React.Component {
                     <Card />
                 </Deck>
                 <UpturnedCard>
-                    <DraggableCard {...firstCard} upturned />
+                    <DraggableCard {...firstCard} upturned where={['DECK']} />
                 </UpturnedCard>
             </div>
         );
