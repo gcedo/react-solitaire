@@ -55,7 +55,7 @@ class Game extends React.Component {
                 }}>
                 {
                     range(0, 6).map(index =>
-                        <SmartPile cards={game.PILE[index]} index={index} key={index} />
+                        <SmartPile cards={game.PILE[index]} index={index} key={index} moveCards={moveCards} />
                     )
                 }
                 </div>

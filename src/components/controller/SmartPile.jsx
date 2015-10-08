@@ -3,7 +3,27 @@ import Pile from '../display/Pile.jsx';
 import { List } from 'immutable';
 import Card, { Ranks, Suits } from '../display/Card.jsx';
 import DraggableCard from './DraggableCard.jsx';
+import { DropTarget } from 'react-dnd';
 
+const pileTarget = {
+    drop(props, monitor, component) {
+        component.moveCards(monitor.getItem());
+    },
+
+    canDrop(props, monitor, component) {
+        const { rank } = monitor.getItem();
+        return rank === 'K';
+    }
+};
+
+function collect(connect, monitor) {
+    return {
+        connectDropTarget: connect.dropTarget()
+    };
+};
+
+
+@DropTarget('DraggableCard', pileTarget, collect)
 class SmartPile extends React.Component {
 
     static propTypes = {
@@ -16,9 +36,17 @@ class SmartPile extends React.Component {
         ))
     }
 
+    moveCards = (card) => {
+        this.props.moveCards(
+            [card],
+            { from: card.where, to: ['PILE', this.props.index] }
+        );
+    }
+
     render() {
         const { cards } = this.props;
         const pileIndex = this.props.index;
+        const { connectDropTarget } = this.props;
         const renderedCards = cards.map((card, index, array) => {
             if (card.upturned || index === array.length - 1) {
                 return (
@@ -32,10 +60,12 @@ class SmartPile extends React.Component {
                 return <Card {...card} key={card.suit + card.rank} />
             }
         });
-        return (
-            <Pile>
-                {renderedCards}
-            </Pile>
+        return connectDropTarget(
+            <div>
+                <Pile>
+                    {renderedCards}
+                </Pile>
+            </div>
         );
     }
 }
