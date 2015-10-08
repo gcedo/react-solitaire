@@ -21,7 +21,13 @@ class SmartPile extends React.Component {
         const pileIndex = this.props.index;
         const renderedCards = cards.map((card, index, array) => {
             if (card.upturned || index === array.length - 1) {
-                return <DraggableCard {...card} key={card.suit + card.rank} where={['PILE', pileIndex]} upturned/>;
+                return (
+                    <DraggableCard {...card}
+                        upturned
+                        key={card.suit + card.rank}
+                        where={['PILE', pileIndex]}
+                    />
+                );
             } else {
                 return <Card {...card} key={card.suit + card.rank} />
             }

@@ -20,14 +20,16 @@ const initialState = Map({
     }),
 
     PILE: getPiles(cards),
-    DECK: List(cards.slice(28))
+    DECK: Map({
+        upturned: List(cards.slice(-1)),
+        downturned: List(cards.slice(28, -1))
+    })
 });
 
 function getPiles (cards) {
-    let deck = cards.slice();
+    const deck = cards.slice();
     return List(range(0, 6).map(index => {
-        let pile = deck.splice(0, index + 1);
-        // return List([{ ...pile.shift(), upturned: true}].concat(pile));
+        const pile = deck.splice(0, index + 1);
         return List(pile.slice(0, -1).concat([{ ...pile.pop(), upturned: true}]))
     }));
 }
@@ -48,10 +50,27 @@ function moveCard(state, action) {
     return newState;
 }
 
+function turnCard(state, action) {
+    let deck = Map();
+    const upturned = state.getIn(['DECK', 'upturned']);
+    const downturned = state.getIn(['DECK', 'downturned']);
+    if (downturned.isEmpty()) {
+        deck = deck.set('downturned', List(upturned));
+        deck = deck.set('upturned', List());
+    } else {
+        deck = deck.set('downturned', downturned.shift());
+        deck = deck.set('upturned', upturned.push(downturned.first()));
+    }
+
+    return state.set('DECK', deck);
+}
+
 function solitaire(state = initialState, action) {
     switch (action.type) {
     case 'MOVE_CARD':
         return moveCard(state, action);
+    case 'TURN_CARD':
+        return turnCard(state, action);
     default:
         return state;
     }

@@ -42,7 +42,7 @@ const Card = ({rank, suit, upturned, style, isOver, canDrop}) => {
         boxSizing: 'border-box',
         color: Colors[suit],
         fontFamily: 'Card Characters',
-        padding: 10,
+        padding: 4,
         width: 125,
         height: 175,
         ...style

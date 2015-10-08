@@ -2,7 +2,6 @@ import React, { PropTypes as T } from 'react';
 import { Suits, Ranks } from '../display/Card.jsx';
 import Foundation from '../display/Foundation.jsx';
 import { DropTarget } from 'react-dnd';
-import { connect } from 'react-redux';
 import ActionCreators, { Directions } from '../../actions';
 import DraggableCard from './DraggableCard.jsx';
 import first from 'lodash/array/first';
@@ -10,7 +9,7 @@ import { RanksValues } from '../display/Card.jsx';
 
 const foundationTarget = {
     drop(props, monitor, component) {
-        component.moveCard(monitor.getItem());
+        component.moveCards(monitor.getItem());
     },
 
     canDrop(props, monitor, component) {
@@ -28,7 +27,7 @@ function collect(connect, monitor) {
     };
 };
 
-@connect((state) => state)
+
 @DropTarget('DraggableCard', foundationTarget, collect)
 export default class SmartFoundation extends React.Component {
     static propTypes = {
@@ -36,14 +35,9 @@ export default class SmartFoundation extends React.Component {
         suit: T.oneOf(Object.keys(Suits))
     }
 
-    moveCard = (card) => {
-        const { suit, dispatch } = this.props;
-        dispatch(
-            ActionCreators.moveCard(
-                [card],
-                { from: card.where, to: ['FOUNDATION', suit] }
-            )
-        );
+    moveCards = (card) => {
+        const { suit } = this.props;
+        this.props.moveCards([card], { from: card.where, to: ['FOUNDATION', suit] });
     }
 
     render() {

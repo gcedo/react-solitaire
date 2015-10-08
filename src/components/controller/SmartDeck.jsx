@@ -5,6 +5,8 @@ import Deck from '../display/Deck.jsx';
 import head from 'lodash/array/head';
 import { List } from 'immutable';
 import DraggableCard from './DraggableCard.jsx';
+import last from 'lodash/array/last';
+import ActionCreators from '../../actions';
 
 class SmartDeck extends React.Component {
 
@@ -17,43 +19,38 @@ class SmartDeck extends React.Component {
     }
 
     static propTypes = {
-        cards: T.arrayOf(T.shape(
-            {
-                rank: T.oneOf(Ranks),
-                suit: T.oneOf(Object.keys(Suits)),
-                upturned: T.bool
-            }
-        ))
-    }
-
-    handleClickOnDeck = () => {
-        const { cards, upturnedCards } = this.state;
-        if (cards.isEmpty()) {
-            this.setState({
-                cards: List(upturnedCards),
-                upturnedCards: List()
-            })
-        } else {
-            this.setState({
-                cards: cards.shift(),
-                upturnedCards: upturnedCards.push(cards.first())
-            })
-        }
+        deck: T.shape({
+            upturned: T.arrayOf(T.shape(
+                {
+                    rank: T.oneOf(Ranks),
+                    suit: T.oneOf(Object.keys(Suits)),
+                    upturned: T.bool
+                }
+            )),
+            downturned: T.arrayOf(T.shape(
+                {
+                    rank: T.oneOf(Ranks),
+                    suit: T.oneOf(Object.keys(Suits)),
+                    upturned: T.bool
+                }
+            ))
+        })
     }
 
     render() {
-        const firstCard = this.state.cards.first();
+        const { deck, turnCard } = this.props;
+        const firstCard = last(deck.upturned);
         return (
             <div style={{
                 display: 'flex',
                 justifyContent: 'space-between',
                 width: 264
             }}>
-                <Deck onClick={this.handleClickOnDeck}>
+                <Deck onClick={turnCard}>
                     <Card />
                 </Deck>
                 <UpturnedCard>
-                    <DraggableCard {...firstCard} upturned where={['DECK']} />
+                    <DraggableCard {...firstCard} upturned where={['DECK', 'upturned']} />
                 </UpturnedCard>
             </div>
         );
