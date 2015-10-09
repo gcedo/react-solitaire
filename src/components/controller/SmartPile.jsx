@@ -47,8 +47,8 @@ class SmartPile extends React.Component {
         const { cards } = this.props;
         const pileIndex = this.props.index;
         const { connectDropTarget } = this.props;
-        const renderedCards = cards.map((card, index, array) => {
-            if (card.upturned || index === array.length - 1) {
+        const renderedCards = cards.map(card => {
+            if (card.upturned) {
                 return (
                     <DraggableCard {...card}
                         upturned

@@ -49,6 +49,15 @@ function moveCard(state, action) {
         );
         source = source.delete(index)
     });
+
+    if (first(where.from) === 'PILE') {
+        source = source.map((card, index, list) => {
+            if (index === list.size - 1) {
+                return { ...card, upturned: true };
+            } else { return card; }
+        })
+    }
+
     newState = newState.updateIn(where.to, value => target);
     newState = newState.updateIn(where.from, value => source);
     return newState;
