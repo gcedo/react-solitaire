@@ -23,7 +23,6 @@ class Game extends React.Component {
     }
 
     render() {
-
         const game = this.props.game.solitaire.toJS();
         const { moveCards, turnCard } = this;
         console.log(game);
