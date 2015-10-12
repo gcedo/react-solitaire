@@ -25,7 +25,7 @@ function getInitialState() {
         PILE: getPiles(cards),
         DECK: Map({
             upturned: List(cards.slice(-1)),
-            downturned: List(cards.slice(28, -1))
+            downturned: List(cards.slice(21, -1))
         })
     });
 }
@@ -91,4 +91,4 @@ function solitaire(state = getInitialState(), action) {
 }
 
 
-export default combineReducers({ solitaire })
+export default combineReducers({ solitaire });
