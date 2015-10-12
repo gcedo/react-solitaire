@@ -1,5 +1,6 @@
 import React, { PropTypes as T } from 'react';
-import Card, { Ranks, Suits, RanksValues, Colors } from '../display/Card.jsx';
+import Card from '../display/Card.jsx';
+import { Ranks, Suits, RanksValues, Colors } from '../../constants';
 import { DragSource } from 'react-dnd';
 import { DropTarget } from 'react-dnd';
 import ActionCreators, { Directions } from '../../actions';
@@ -64,6 +65,11 @@ export default class DraggableCard extends React.Component {
         upturned: T.bool
     }
 
+    constructor(props) {
+        super(props);
+        this.state = { isMouseOver: false };
+    }
+
     moveCard = (card) => {
         const { dispatch } = this.props;
         dispatch(
@@ -75,11 +81,18 @@ export default class DraggableCard extends React.Component {
 
     }
 
+    onMouseOver = () => { this.setState({ isMouseOver: true }) }
+    onMouseOut = () => { this.setState({ isMouseOver: false }) }
+
     render () {
         const { connectDragSource, connectDropTarget, isOver, canDrop } = this.props;
+        const { isMouseOver } = this.state;
         return connectDropTarget(connectDragSource(
-            <div>
-                <Card {...this.props} isOver={isOver} canDrop={canDrop} />
+            <div
+                onMouseOver={this.onMouseOver}
+                onMouseOut={this.onMouseOut}
+            >
+                <Card {...this.props} isOver={isOver} canDrop={canDrop} isMouseOver={isMouseOver} />
             </div>
         ));
     }

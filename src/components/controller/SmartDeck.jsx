@@ -1,5 +1,6 @@
 import React, { PropTypes as T } from 'react';
-import Card, { Suits, Ranks } from '../display/Card.jsx';
+import Card from '../display/Card.jsx';
+import { Suits, Ranks } from '../../constants';
 import UpturnedCard from '../display/UpturnedCard.jsx';
 import Deck from '../display/Deck.jsx';
 import head from 'lodash/array/head';

@@ -1,7 +1,8 @@
 import ReactDOM from 'react-dom';
 import React from 'react';
 import Game from './components/controller/Game.jsx';
-import Card, { Suits, Ranks } from './components/display/Card.jsx';
+import Card from './components/display/Card.jsx';
+import { Suits, Ranks } from './constants';
 import Deck from './components/display/Deck.jsx';
 import SmartDeck from './components/controller/SmartDeck.jsx';
 import Pile from './components/display/Pile.jsx';

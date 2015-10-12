@@ -1,7 +1,8 @@
 import React, { PropTypes as T } from 'react';
 import Pile from '../display/Pile.jsx';
 import { List } from 'immutable';
-import Card, { Ranks, Suits } from '../display/Card.jsx';
+import Card from '../display/Card.jsx';
+import { Suits, Ranks } from '../../constants';
 import DraggableCard from './DraggableCard.jsx';
 import { DropTarget } from 'react-dnd';
 

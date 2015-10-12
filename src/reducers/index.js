@@ -1,7 +1,7 @@
 import { Directions } from '../actions';
 import { combineReducers } from 'redux';
 import Immutable, { Map, List } from 'immutable';
-import { Suits, Ranks } from '../components/display/Card.jsx';
+import { Suits, Ranks } from '../constants';
 import range from 'lodash/utility/range';
 import shuffle from 'lodash/collection/shuffle';
 import first from 'lodash/array/first'

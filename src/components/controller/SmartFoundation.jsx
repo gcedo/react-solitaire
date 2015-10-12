@@ -1,10 +1,9 @@
 import React, { PropTypes as T } from 'react';
-import { Suits, Ranks } from '../display/Card.jsx';
 import Foundation from '../display/Foundation.jsx';
 import ActionCreators, { Directions } from '../../actions';
 import DraggableCard from './DraggableCard.jsx';
 import first from 'lodash/array/first';
-import { RanksValues } from '../display/Card.jsx';
+import { RanksValues, Suits, Ranks } from '../../constants';
 import { DropTarget } from 'react-dnd';
 
 const foundationTarget = {

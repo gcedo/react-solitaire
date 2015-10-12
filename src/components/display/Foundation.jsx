@@ -1,5 +1,5 @@
 import React from 'react';
-import { Suits } from './Card.jsx';
+import { Suits } from '../../constants';
 
 const Foundation = ({ children, suit, isOver, canDrop }) => {
     const borderColor = isOver && (canDrop && 'green' || 'red') || '#388E3C';
