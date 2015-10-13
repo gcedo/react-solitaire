@@ -85,14 +85,18 @@ export default class DraggableCard extends React.Component {
     onMouseOut = () => { this.setState({ isMouseOver: false }) }
 
     render () {
-        const { connectDragSource, connectDropTarget, isOver, canDrop } = this.props;
+        const { connectDragSource, connectDropTarget, isOver, canDrop, isDragging } = this.props;
         const { isMouseOver } = this.state;
         return connectDropTarget(connectDragSource(
             <div
                 onMouseOver={this.onMouseOver}
                 onMouseOut={this.onMouseOut}
             >
-                <Card {...this.props} isOver={isOver} canDrop={canDrop} isMouseOver={isMouseOver} />
+                <Card {...this.props}
+                    isOver={isOver}
+                    canDrop={canDrop}
+                    isDragging={isDragging}
+                    isMouseOver={isMouseOver} />
             </div>
         ));
     }

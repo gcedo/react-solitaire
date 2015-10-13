@@ -2,7 +2,11 @@ export const Colors = {
     SPADES: '#212121',
     HEARTS: '#FF5722',
     DIAMONDS: '#FF5722',
-    CLUBS: '#212121'
+    CLUBS: '#212121',
+    Card: {
+        upturned: 'white',
+        downturned: 'gray'
+    }
 };
 
 export const Shadows = {
@@ -13,5 +17,11 @@ export const Shadows = {
     Level5: '0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22)'
 }
 
-
+export const Dimensions = {
+    Card: {
+        width: 125,
+        height: 175,
+        borderRadius: 2
+    }
+}
 
