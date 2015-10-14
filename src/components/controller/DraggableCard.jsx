@@ -39,7 +39,7 @@ const cardTarget = {
             return draggedCard.suit === props.suit &&
                RanksValues[draggedCard.rank] === RanksValues[props.rank] + 1;
         } else if (first(destination) === 'PILE') {
-            return Colors[draggedCard.suit] !== Colors[props.suit] &&
+            return props.isLast && Colors[draggedCard.suit] !== Colors[props.suit] &&
                 RanksValues[draggedCard.rank] === RanksValues[props.rank] - 1;
         }
 
