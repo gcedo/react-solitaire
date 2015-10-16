@@ -3,9 +3,18 @@ export const Colors = {
     HEARTS: '#FF5722',
     DIAMONDS: '#FF5722',
     CLUBS: '#212121',
+
     Card: {
         upturned: 'white',
         downturned: 'gray'
+    },
+
+    Game: {
+        backgroundColor: '#4CAF50'
+    },
+
+    Foundation: {
+
     }
 };
 
@@ -22,6 +31,11 @@ export const Dimensions = {
         width: 125,
         height: 175,
         borderRadius: 2
+    },
+
+    Game: {
+        width: 957,
+        height: 500
     }
 }
 

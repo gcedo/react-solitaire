@@ -1,5 +1,6 @@
 import React, { PropTypes as T } from 'react';
 import Overlay from './Overlay.jsx';
+import SuitAndRank from './SuitAndRank.jsx';
 import { Shadows, Suits, Ranks, RanksValues, Colors, Dimensions } from '../../constants';
 
 const Card =
@@ -13,7 +14,7 @@ const Card =
         boxShadow: upturned ? Shadows.Level1 : null,
         boxSizing: 'border-box',
         color: Colors[suit],
-        fontFamily: 'Card Characters',
+        fontFamily: 'Helvetica',
         padding: 4,
         position: 'relative',
         width: Dimensions.Card.width,
@@ -32,13 +33,18 @@ const Card =
 
     if (isDragging) { _style = { ..._style, opacity: .6 } }
 
+    if (!upturned) { return <div style={_style} />; }
+
     return (
         <div style={_style}>
             { isOver && <Overlay backgroundColor={backgroundColor} /> }
-            {upturned && rank}
-            {upturned && Suits[suit]}
+            <SuitAndRank suit={suit} rank={rank} position={{top: 4, left: 5}} />
+            <SuitAndRank suit={suit} rank={rank} position={{top: 4, right: 5}} />
+            <SuitAndRank suit={suit} rank={rank} position={{bottom: 4, left: 5}} />
+            <SuitAndRank suit={suit} rank={rank} position={{bottom: 4, right: 5}} />
         </div>
     );
+
 }
 
 Card.propTypes = {

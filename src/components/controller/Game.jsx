@@ -7,8 +7,9 @@ import HTML5Backend from 'react-dnd/modules/backends/HTML5';
 import range from 'lodash/utility/range';
 import { connect } from 'react-redux';
 import ActionCreators from '../../actions';
+import { Colors, Dimensions } from '../../constants';
 
-@connect((state) => { return { game: state } })
+@connect((state) => { return { game: state.solitaire.toJS() } })
 @DragDropContext(HTML5Backend)
 class Game extends React.Component {
 
@@ -23,14 +24,15 @@ class Game extends React.Component {
     }
 
     render() {
-        const game = this.props.game.solitaire.toJS();
+        const { game } = this.props;
         const { moveCards, turnCard } = this;
         console.log(game);
 
         return (
             <div style={{
-                width: 957,
-                backgroundColor: '#4CAF50',
+                width: Dimensions.Game.width,
+                height: Dimensions.Game.height,
+                backgroundColor: Colors.Game.backgroundColor,
                 padding: 10
             }}>
                 <div style={{display: 'flex', justifyContent: 'space-between'}}>
@@ -40,10 +42,26 @@ class Game extends React.Component {
                         display: 'flex',
                         justifyContent: 'space-between'
                     }}>
-                        <SmartFoundation suit="SPADES" cards={game.FOUNDATION.SPADES} moveCards={moveCards} />
-                        <SmartFoundation suit="HEARTS" cards={game.FOUNDATION.HEARTS} moveCards={moveCards} />
-                        <SmartFoundation suit="DIAMONDS" cards={game.FOUNDATION.DIAMONDS} moveCards={moveCards} />
-                        <SmartFoundation suit="CLUBS" cards={game.FOUNDATION.CLUBS} moveCards={moveCards} />
+                        <SmartFoundation
+                            suit="SPADES"
+                            cards={game.FOUNDATION.SPADES}
+                            moveCards={moveCards}
+                        />
+                        <SmartFoundation
+                            suit="HEARTS"
+                            cards={game.FOUNDATION.HEARTS}
+                            moveCards={moveCards}
+                        />
+                        <SmartFoundation
+                            suit="DIAMONDS"
+                            cards={game.FOUNDATION.DIAMONDS}
+                            moveCards={moveCards}
+                        />
+                        <SmartFoundation
+                            suit="CLUBS"
+                            cards={game.FOUNDATION.CLUBS}
+                            moveCards={moveCards}
+                        />
                     </div>
                 </div>
                 <div style={{
@@ -54,7 +72,12 @@ class Game extends React.Component {
                 }}>
                 {
                     range(0, 6).map(index =>
-                        <SmartPile cards={game.PILE[index]} index={index} key={index} moveCards={moveCards} />
+                        <SmartPile
+                            cards={game.PILE[index]}
+                            index={index}
+                            key={index}
+                            moveCards={moveCards}
+                        />
                     )
                 }
                 </div>
