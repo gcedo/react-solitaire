@@ -3,7 +3,7 @@ import { Suits, Colors } from '../../constants';
 
 
 const Foundation = ({ children, suit, isOver, canDrop }) => {
-    const color = isOver && (canDrop && Colors[suit] || Colors.Card.downturned) || Colors.Game.backgroundColor;
+    const color = isOver && canDrop && Colors[suit] || Colors.Game.backgroundColor;
     return (
         <div style={{
             backgroundColor: isOver && canDrop && Colors.Card.upturned || '#388E3C',
