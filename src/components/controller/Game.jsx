@@ -43,11 +43,6 @@ class Game extends React.Component {
                         justifyContent: 'space-between'
                     }}>
                         <SmartFoundation
-                            suit="SPADES"
-                            cards={game.FOUNDATION.SPADES}
-                            moveCards={moveCards}
-                        />
-                        <SmartFoundation
                             suit="HEARTS"
                             cards={game.FOUNDATION.HEARTS}
                             moveCards={moveCards}
@@ -60,6 +55,11 @@ class Game extends React.Component {
                         <SmartFoundation
                             suit="CLUBS"
                             cards={game.FOUNDATION.CLUBS}
+                            moveCards={moveCards}
+                        />
+                        <SmartFoundation
+                            suit="SPADES"
+                            cards={game.FOUNDATION.SPADES}
                             moveCards={moveCards}
                         />
                     </div>

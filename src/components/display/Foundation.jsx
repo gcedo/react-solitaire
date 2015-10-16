@@ -1,12 +1,13 @@
 import React from 'react';
-import { Suits } from '../../constants';
+import { Suits, Colors } from '../../constants';
+
 
 const Foundation = ({ children, suit, isOver, canDrop }) => {
-    const borderColor = isOver && (canDrop && 'green' || 'red') || '#388E3C';
+    const color = isOver && (canDrop && Colors[suit] || Colors.Card.downturned) || Colors.Game.backgroundColor;
     return (
         <div style={{
             backgroundColor: '#388E3C',
-            border: `1px solid ${borderColor}`,
+            border: '1px solid #388E3C',
             borderRadius: 2,
             borderStyle: 'dotted',
             boxSizing: 'border-box',
@@ -15,9 +16,15 @@ const Foundation = ({ children, suit, isOver, canDrop }) => {
             position: 'relative'
         }}>
             <div style={{
+                color,
                 position: 'absolute',
-                top: 50,
-                left: 50
+                top: 0,
+                left: 0,
+                height: 175,
+                width: 125,
+                lineHeight: '175px',
+                textAlign: 'center',
+                fontSize: 40,
             }}>
                 {Suits[suit]}
             </div>

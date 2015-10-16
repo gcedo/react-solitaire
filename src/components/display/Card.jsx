@@ -39,8 +39,6 @@ const Card =
         <div style={_style}>
             { isOver && <Overlay backgroundColor={backgroundColor} /> }
             <SuitAndRank suit={suit} rank={rank} position={{top: 4, left: 5}} />
-            <SuitAndRank suit={suit} rank={rank} position={{top: 4, right: 5}} />
-            <SuitAndRank suit={suit} rank={rank} position={{bottom: 4, left: 5}} />
             <SuitAndRank suit={suit} rank={rank} position={{bottom: 4, right: 5}} />
         </div>
     );
