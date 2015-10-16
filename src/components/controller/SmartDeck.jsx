@@ -11,14 +11,6 @@ import ActionCreators from '../../actions';
 
 class SmartDeck extends React.Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            cards: List(props.cards),
-            upturnedCards: List()
-        }
-    }
-
     static propTypes = {
         deck: T.shape({
             upturned: T.arrayOf(T.shape(
@@ -51,7 +43,10 @@ class SmartDeck extends React.Component {
                     <Card />
                 </Deck>
                 <UpturnedCard>
-                    <DraggableCard {...firstCard} upturned where={['DECK', 'upturned']} />
+                    <DraggableCard {...firstCard}
+                        upturned
+                        where={['DECK', 'upturned']}
+                    />
                 </UpturnedCard>
             </div>
         );

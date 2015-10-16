@@ -13,7 +13,8 @@ const cardSource = {
         suit: props.suit,
         rank: props.rank,
         where: props.where,
-        upturned: props.upturned
+        upturned: props.upturned,
+        isLast: props.isLast
     };
   }
 };

@@ -38,30 +38,35 @@ function getPiles (cards) {
     }));
 }
 
-function moveCard(state, action) {
-    const { cards, where } = action.payload;
-    let newState = state;
-    const target = state.getIn(where.to).concat(cards);
-    let source = state.getIn(where.from);
-    cards.forEach(card => {
-        const index = source.findIndex(c =>
-            c.suit === card.suit && c.rank === card.rank
-        );
-        source = source.delete(index)
+function upturnFirstCard(cards) {
+    return cards.map((card, index, pile) => {
+        if (index === pile.size - 1) { return { ...card, upturned: true }; }
+        else { return card; }
     });
-
-    if (first(where.from) === 'PILE') {
-        source = source.map((card, index, list) => {
-            if (index === list.size - 1) {
-                return { ...card, upturned: true };
-            } else { return card; }
-        })
-    }
-
-    newState = newState.updateIn(where.to, value => target);
-    newState = newState.updateIn(where.from, value => source);
-    return newState;
 }
+
+function removeCards (cards, source) {
+    return source.filter(card =>
+        cards.findIndex(c => c.suit === card.suit && c.rank === card.rank) === -1
+    );
+}
+
+function moveCard(state, action) {
+    let { cards, where } = action.payload;
+    let source = state.getIn(where.from)
+    if (first(where.from) === 'PILE' && first(where.to) === 'PILE' && !first(cards).isLast) {
+        const index = source.findIndex(c => c.suit === first(cards).suit && c.rank === first(cards).rank)
+        cards = source.slice(index);
+    }
+    const target = state.getIn(where.to).concat(cards);
+    source = removeCards(cards, state.getIn(where.from));
+
+    if (first(where.from) === 'PILE') source = upturnFirstCard(source);
+
+    let newState = state.updateIn(where.to, value => target);
+    return newState.updateIn(where.from, value => source);
+}
+
 
 function turnCard(state, action) {
     let deck = Map();
