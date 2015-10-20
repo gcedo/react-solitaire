@@ -1,14 +1,17 @@
 import React, { PropTypes as T } from 'react';
 import Overlay from './Overlay.jsx';
 import SuitAndRank from './SuitAndRank.jsx';
+import SuitSymbol from './SuitSymbol.jsx';
+import { CardsLayouts } from '../../constants';
 import { Shadows, Suits, Ranks, RanksValues, Colors, Dimensions } from '../../constants';
 
 const Card =
 ({rank, suit, upturned, style, isOver, canDrop, isMouseOver, isDragging}) => {
     const borderColor = isOver && (canDrop && 'green' || 'red') || '#B6B6B6';
     const backgroundColor = isOver && (canDrop && 'green' || 'red') || 'white';
+    let suitSymbols;
     let _style = {
-        backgroundColor: upturned ? Colors.Card.upturned : Colors.Card.downturned,
+        background: upturned ? Colors.Card.upturned : Colors.Card.downturned,
         border: `1px solid ${borderColor}`,
         borderRadius: Dimensions.Card.borderRadius,
         boxShadow: upturned ? Shadows.Level1 : null,
@@ -30,16 +33,24 @@ const Card =
             transform: 'translateY(-5px)',
         };
     }
-
     if (isDragging) { _style = { ..._style, opacity: .6 } }
-
     if (!upturned) { return <div style={_style} />; }
+
+    if (Array.isArray(CardsLayouts[rank])) {
+        suitSymbols =
+            CardsLayouts[rank].map((style, i) =>
+                <SuitSymbol style={style} suit={suit} key={i} />
+            );
+    } else {
+        _style = { ..._style, ...CardsLayouts[rank] };
+    }
 
     return (
         <div style={_style}>
             { isOver && <Overlay backgroundColor={backgroundColor} /> }
             <SuitAndRank suit={suit} rank={rank} position={{top: 4, left: 5}} />
             <SuitAndRank suit={suit} rank={rank} position={{bottom: 4, right: 5}} />
+            {suitSymbols}
         </div>
     );
 

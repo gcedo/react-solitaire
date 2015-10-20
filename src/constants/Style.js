@@ -39,3 +39,53 @@ export const Dimensions = {
     }
 }
 
+const sidePadding = 10;
+
+export const CardsLayouts = {
+    A: [{ top: 62.5, left: 37.5, fontSize: 40 }],
+    2: [
+        { top: 20, left: 37.5, fontSize: 40 },
+        { bottom: 20, left: 37.5, fontSize: 40, transform: 'rotate(180deg)' }
+    ],
+    get 3 () { return this[2].concat({ top: 62.5, left: 37.5, fontSize: 40 }); },
+    4: [
+        { top: 20, left: sidePadding, fontSize: 40 },
+        { top: 20, right: sidePadding, fontSize: 40 },
+        { bottom: 20, left: sidePadding, fontSize: 40, transform: 'rotate(180deg)' },
+        { bottom: 20, right: sidePadding, fontSize: 40, transform: 'rotate(180deg)' }
+    ],
+    get 5 () {
+        return this[4].concat({ top: 62.5, right: 37.5, fontSize: 40 });
+    },
+    6: [
+        { top: 20, left: sidePadding, fontSize: 40 },
+        { top: 62.5, left: sidePadding, fontSize: 40 },
+        { bottom: 20, left: sidePadding, fontSize: 40, transform: 'rotate(180deg)' },
+        { top: 20, right: sidePadding, fontSize: 40 },
+        { top: 62.5, right: sidePadding, fontSize: 40 },
+        { bottom: 20, right: sidePadding, fontSize: 40, transform: 'rotate(180deg)' }
+    ],
+    get 7 () {
+        return this[6].concat({ top: 40, left: 37.5, fontSize: 40 });
+    },
+    get 8 () {
+        return this[7].concat({ bottom: 40, left: 37.5, fontSize: 40,  transform: 'rotate(180deg)' })
+    },
+    9: [
+        { top: 20, left: sidePadding, fontSize: 40 },
+        { top: 20, right: sidePadding, fontSize: 40 },
+        { top: 50, left: sidePadding, fontSize: 40 },
+        { top: 50, right: sidePadding, fontSize: 40 },
+        { top: 40, right: 37.5, fontSize: 40 },
+        { bottom: 50, left: sidePadding, fontSize: 40, transform: 'rotate(180deg)' },
+        { bottom: 50, right: sidePadding, fontSize: 40, transform: 'rotate(180deg)' },
+        { bottom: 20, right: sidePadding, fontSize: 40, transform: 'rotate(180deg)' },
+        { bottom: 20, left: sidePadding, fontSize: 40, transform: 'rotate(180deg)' },
+    ],
+    get 10 () {
+        return this[9].concat({ bottom: 40, right: 37.5, fontSize: 40,  transform: 'rotate(180deg)' })
+    },
+    J: [{ top: 30, left: 30, fontSize: 40 }],
+    Q: { backgroundImage: 'url(img/queen.png)' },
+    K: { backgroundImage: 'url(img/king.jpg)' },
+}

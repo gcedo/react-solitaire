@@ -28,7 +28,10 @@ ReactDOM.render(
 );
 
 ReactDOM.render(
-    <Card rank="A" suit="HEARTS" upturned/>, document.getElementById('card')
+    <div>
+        { Ranks.map(rank => <Card rank={rank} suit="HEARTS" upturned key={rank} />) }
+    </div>,
+    document.getElementById('card')
 );
 
 ReactDOM.render(
