@@ -7,7 +7,6 @@ import { Shadows, Suits, Ranks, RanksValues, Colors, Dimensions } from '../../co
 
 const Card =
 ({rank, suit, upturned, style, isOver, canDrop, isMouseOver, isDragging}) => {
-    const backgroundColor = isOver && (canDrop && 'green' || 'red') || 'white';
     let suitSymbols;
     let _style = {
         background: upturned ? Colors.Card.upturned : Colors.Card.downturned,
@@ -32,20 +31,19 @@ const Card =
             transform: 'translateY(-5px)',
         };
     }
-    if (isDragging) { _style = { ..._style, opacity: .6 } }
+    if (isDragging) _style = { ..._style, opacity: .6 };
 
     if (Array.isArray(CardsLayouts[rank])) {
         suitSymbols =
             CardsLayouts[rank].map((style, i) =>
                 <SuitSymbol style={style} suit={suit} key={i} />
             );
-    } else {
-        _style = { ..._style, ...CardsLayouts[rank] };
-    }
+    } else _style = { ..._style, ...CardsLayouts[rank] };
+
 
     return (
         <div style={_style}>
-            { isOver && <Overlay backgroundColor={backgroundColor} /> }
+            { isOver && <Overlay color={canDrop && Colors.OK || Colors.KO} /> }
             <SuitAndRank suit={suit} rank={rank} position={{top: 4, left: 5}} />
             <SuitAndRank suit={suit} rank={rank} position={{bottom: 4, right: 5}} />
             {suitSymbols}

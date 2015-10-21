@@ -23,3 +23,9 @@ export const RanksValues = {
     Q: 12,
     K: 13
 };
+
+export const Places = {
+    FOUNDATION: 'FOUNDATION',
+    PILE: 'PILE',
+    DECK: 'DECK'
+};

@@ -18,9 +18,7 @@ const pileTarget = {
 };
 
 function collect(connect, monitor) {
-    return {
-        connectDropTarget: connect.dropTarget()
-    };
+    return { connectDropTarget: connect.dropTarget() };
 };
 
 
@@ -62,10 +60,12 @@ class SmartPile extends React.Component {
                 return <Card {...card} key={card.suit + card.rank} />
             }
         });
-        return (
-            <Pile ref={instance => connectDropTarget(findDOMNode(instance))}>
-                {renderedCards}
-            </Pile>
+        return connectDropTarget(
+            <div>
+                <Pile>
+                    {renderedCards}
+                </Pile>
+            </div>
         );
     }
 }

@@ -5,6 +5,7 @@ import { DragSource } from 'react-dnd';
 import { DropTarget } from 'react-dnd';
 import ActionCreators, { Directions } from '../../actions';
 import { connect } from 'react-redux';
+import { Places } from '../../constants';
 import first from 'lodash/array/first';
 
 const cardSource = {
@@ -34,14 +35,16 @@ const cardTarget = {
     canDrop(props, monitor, component) {
         const draggedCard = monitor.getItem();
         const origin = draggedCard.where;
-        const destination = props.where;
+        const destination = first(props.where);
 
-        if (first(destination) === 'FOUNDATION') {
-            return draggedCard.suit === props.suit &&
-               RanksValues[draggedCard.rank] === RanksValues[props.rank] + 1;
-        } else if (first(destination) === 'PILE') {
-            return props.isLast && Colors[draggedCard.suit] !== Colors[props.suit] &&
-                RanksValues[draggedCard.rank] === RanksValues[props.rank] - 1;
+        const { suit, rank } = props;
+
+        if (destination === Places.FOUNDATION) {
+            return draggedCard.suit === suit &&
+               RanksValues[draggedCard.rank] === RanksValues[rank] + 1;
+        } else if (destination === Places.PILE) {
+            return props.isLast && Colors[draggedCard.suit] !== Colors[suit] &&
+                RanksValues[draggedCard.rank] === RanksValues[rank] - 1;
         }
 
         return false;
@@ -86,7 +89,8 @@ export default class DraggableCard extends React.Component {
     onMouseOut = () => { this.setState({ isMouseOver: false }) }
 
     render () {
-        const { connectDragSource, connectDropTarget, isOver, canDrop, isDragging } = this.props;
+        const { connectDragSource, connectDropTarget } = this.props;
+        const { isOver, canDrop, isDragging } = this.props;
         const { isMouseOver } = this.state;
         return connectDropTarget(connectDragSource(
             <div

@@ -48,15 +48,16 @@ export default class SmartFoundation extends React.Component {
                 upturned where={['FOUNDATION', suit]}
             /> :
             null;
-        return (
-            <Foundation
-                ref={instance => connectDropTarget(findDOMNode(instance))}
-                {...this.props}
-                isOver={isOver}
-                canDrop={canDrop}
-            >
-                {card}
-            </Foundation>
+        return connectDropTarget(
+            <div>
+                <Foundation
+                    {...this.props}
+                    isOver={isOver}
+                    canDrop={canDrop}
+                >
+                    {card}
+                </Foundation>
+            </div>
         );
     }
 }

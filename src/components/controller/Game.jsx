@@ -9,7 +9,7 @@ import { connect } from 'react-redux';
 import ActionCreators from '../../actions';
 import { Colors, Dimensions } from '../../constants';
 
-@connect((state) => { return { game: state.solitaire.toJS() } })
+@connect((state) => { return { game: state.game.toJS() } })
 @DragDropContext(HTML5Backend)
 class Game extends React.Component {
 
@@ -26,7 +26,6 @@ class Game extends React.Component {
     render() {
         const { game } = this.props;
         const { moveCards, turnCard } = this;
-        console.log(game);
 
         return (
             <div style={{

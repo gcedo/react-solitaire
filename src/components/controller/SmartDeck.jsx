@@ -8,6 +8,7 @@ import { List } from 'immutable';
 import DraggableCard from './DraggableCard.jsx';
 import last from 'lodash/array/last';
 import ActionCreators from '../../actions';
+import { Places } from '../../constants';
 
 class SmartDeck extends React.Component {
 
@@ -45,7 +46,7 @@ class SmartDeck extends React.Component {
                 <UpturnedCard>
                     <DraggableCard {...firstCard}
                         upturned
-                        where={['DECK', 'upturned']}
+                        where={[Places.DECK, 'upturned']}
                     />
                 </UpturnedCard>
             </div>

@@ -9,7 +9,11 @@ const Pile = ({ children }) => {
         top += wasUpturned ? 15 : 5;
         return React.cloneElement(
             element,
-            { style: { top, position: 'absolute', } }
+            { style: {
+                top,
+                position: 'absolute',
+                // transform: `rotate(${element.props.rotation}deg)`
+            } }
         )
     });
 
