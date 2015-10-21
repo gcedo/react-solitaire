@@ -1,4 +1,4 @@
-import React, { PropTypes as T } from 'react';
+import React, { findDOMNode, PropTypes as T } from 'react';
 import Pile from '../display/Pile.jsx';
 import { List } from 'immutable';
 import Card from '../display/Card.jsx';
@@ -62,12 +62,10 @@ class SmartPile extends React.Component {
                 return <Card {...card} key={card.suit + card.rank} />
             }
         });
-        return connectDropTarget(
-            <div>
-                <Pile>
-                    {renderedCards}
-                </Pile>
-            </div>
+        return (
+            <Pile ref={instance => connectDropTarget(findDOMNode(instance))}>
+                {renderedCards}
+            </Pile>
         );
     }
 }

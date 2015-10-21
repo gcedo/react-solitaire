@@ -1,4 +1,4 @@
-import React, { PropTypes as T } from 'react';
+import React, { findDOMNode, PropTypes as T } from 'react';
 import Foundation from '../display/Foundation.jsx';
 import ActionCreators, { Directions } from '../../actions';
 import DraggableCard from './DraggableCard.jsx';
@@ -48,12 +48,15 @@ export default class SmartFoundation extends React.Component {
                 upturned where={['FOUNDATION', suit]}
             /> :
             null;
-        return connectDropTarget(
-            <div>
-                <Foundation {...this.props} isOver={isOver} canDrop={canDrop}>
-                    {card}
-                </Foundation>
-            </div>
+        return (
+            <Foundation
+                ref={instance => connectDropTarget(findDOMNode(instance))}
+                {...this.props}
+                isOver={isOver}
+                canDrop={canDrop}
+            >
+                {card}
+            </Foundation>
         );
     }
 }
