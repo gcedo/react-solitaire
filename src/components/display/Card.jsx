@@ -7,14 +7,12 @@ import { Shadows, Suits, Ranks, RanksValues, Colors, Dimensions } from '../../co
 
 const Card =
 ({rank, suit, upturned, style, isOver, canDrop, isMouseOver, isDragging}) => {
-    const borderColor = isOver && (canDrop && 'green' || 'red') || '#B6B6B6';
     const backgroundColor = isOver && (canDrop && 'green' || 'red') || 'white';
     let suitSymbols;
     let _style = {
         background: upturned ? Colors.Card.upturned : Colors.Card.downturned,
-        border: `1px solid ${borderColor}`,
         borderRadius: Dimensions.Card.borderRadius,
-        boxShadow: upturned ? Shadows.Level1 : null,
+        boxShadow: Shadows.Level1,
         boxSizing: 'border-box',
         color: Colors[suit],
         fontFamily: 'Helvetica',
@@ -26,6 +24,7 @@ const Card =
         transition: 'all 250ms',
         ...style
     };
+    if (!upturned) { return <div style={_style} />; }
 
     if (isMouseOver) {
         _style = {..._style,
@@ -34,7 +33,6 @@ const Card =
         };
     }
     if (isDragging) { _style = { ..._style, opacity: .6 } }
-    if (!upturned) { return <div style={_style} />; }
 
     if (Array.isArray(CardsLayouts[rank])) {
         suitSymbols =

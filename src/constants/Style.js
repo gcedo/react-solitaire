@@ -6,7 +6,9 @@ export const Colors = {
 
     Card: {
         upturned: 'white',
-        downturned: 'gray'
+        downturned: '#1976D2',
+        borderColorUp: '#B6B6B6',
+        borderColorDown: '#1976D2'
     },
 
     Game: {
