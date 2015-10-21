@@ -45,7 +45,6 @@ function upturnFirstCard(cards) {
 
 function moveCards(state, action) {
     let { cards, where } = action.payload;
-    const target = state.getIn(where.to).concat(cards);
     let source = state.getIn(where.from)
     if (first(where.from) === 'PILE' && first(where.to) === 'PILE' && !first(cards).isLast) {
         const index = source.findIndex(c =>
@@ -53,6 +52,7 @@ function moveCards(state, action) {
         );
         cards = source.slice(index);
     }
+    const target = state.getIn(where.to).concat(cards);
     source = source.slice(0, -cards.length);
 
     if (first(where.from) === 'PILE') source = upturnFirstCard(source);
