@@ -51,6 +51,7 @@ class SmartPile extends React.Component {
                 return (
                     <DraggableCard {...card}
                         isLast={index === array.length - 1}
+                        index={index}
                         upturned
                         key={card.suit + card.rank}
                         where={['PILE', pileIndex]}

@@ -15,7 +15,8 @@ const cardSource = {
         rank: props.rank,
         where: props.where,
         upturned: props.upturned,
-        isLast: props.isLast
+        isLast: props.isLast,
+        index: props.index
     };
   }
 };

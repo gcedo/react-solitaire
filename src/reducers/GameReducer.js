@@ -28,7 +28,7 @@ function getInitialState() {
     });
 }
 
-function getPiles (cards) {
+function getPiles(cards) {
     const deck = cards.slice();
     return List(range(0, 6).map(index => {
         const pile = deck.splice(0, index + 1);
@@ -43,14 +43,28 @@ function upturnFirstCard(cards) {
     });
 }
 
+/**
+ * Returns true if the player ismoving more than one card from one pile to
+ * another, false otherwise.
+ *
+ * @param  {Object} where Object describing:
+ *                            .to: where the cards are going to
+ *                            .from: where the cards come from
+ * @param  {Array} cards  The array of cards to be moved.
+ * @return {Boolean}      True if moving more than one card from one pile to
+ *                        another, false otherwise.
+ */
+function movingMultipleCardsFromPileToPile(where, cards) {
+    return first(where.from) === 'PILE' &&
+           first(where.to) === 'PILE' &&
+           !first(cards).isLast;
+}
+
 function moveCards(state, action) {
     let { cards, where } = action.payload;
     let source = state.getIn(where.from)
-    if (first(where.from) === 'PILE' && first(where.to) === 'PILE' && !first(cards).isLast) {
-        const index = source.findIndex(c =>
-            c.suit === first(cards).suit && c.rank === first(cards).rank
-        );
-        cards = source.slice(index);
+    if (movingMultipleCardsFromPileToPile(where, cards)) {
+        cards = source.slice(first(cards).index);
     }
     const target = state.getIn(where.to).concat(cards);
     source = source.slice(0, -cards.length);
@@ -61,6 +75,7 @@ function moveCards(state, action) {
         .updateIn(where.to, value => target)
         .updateIn(where.from, value => source);
 }
+
 
 function turnCard(state, action) {
     let deck = Map();

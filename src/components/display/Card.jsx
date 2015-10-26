@@ -34,10 +34,9 @@ const Card =
     if (isDragging) _style = { ..._style, opacity: .6 };
 
     if (Array.isArray(CardsLayouts[rank])) {
-        suitSymbols =
-            CardsLayouts[rank].map((style, i) =>
-                <SuitSymbol style={style} suit={suit} key={i} />
-            );
+        suitSymbols = CardsLayouts[rank].map((style, i) =>
+            <SuitSymbol style={style} suit={suit} key={i} />
+        );
     } else _style = { ..._style, ...CardsLayouts[rank] };
 
 

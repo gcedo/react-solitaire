@@ -59,9 +59,7 @@ export const CardsLayouts = {
         { bottom: 20, left: sidePadding, transform: 'rotate(180deg)' },
         { bottom: 20, right: sidePadding, transform: 'rotate(180deg)' }
     ],
-    get 5 () {
-        return this[4].concat({ top: 62.5, right: 37.5 });
-    },
+    get 5 () { return this[4].concat({ top: 62.5, right: 37.5 }); },
     6: [
         { top: 20, left: sidePadding },
         { top: 62.5, left: sidePadding },
@@ -70,9 +68,7 @@ export const CardsLayouts = {
         { top: 62.5, right: sidePadding },
         { bottom: 20, right: sidePadding, transform: 'rotate(180deg)' }
     ],
-    get 7 () {
-        return this[6].concat({ top: 40, left: 37.5 });
-    },
+    get 7 () { return this[6].concat({ top: 40, left: 37.5 }); },
     get 8 () {
         return this[7].concat({ bottom: 40, left: 37.5,  transform: 'rotate(180deg)' })
     },
