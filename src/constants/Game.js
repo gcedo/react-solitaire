@@ -29,3 +29,8 @@ export const Places = {
     PILE: 'PILE',
     DECK: 'DECK'
 };
+
+export const ActionTypes = {
+    TURN_CARD: 'TURN_CARD',
+    MOVE_CARD: 'MOVE_CARD'
+}
