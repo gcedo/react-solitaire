@@ -10,6 +10,8 @@ function getNewState(state) {
 
 const getNewGame = getNewState(initialState);
 
+function cardsEqual(a, b) { return a.rank === b.rank && a.suit === b.suit; }
+
 describe('GameReducer', function () {
 describe('MOVE_CARD', () => {
     it('should handle from PILE to FOUNDATION', () => {
@@ -81,6 +83,12 @@ describe('MOVE_CARD', () => {
 });
 
 describe('TURN_CARD', () => {
-    it('should turn a deck card');
+    it('should turn a deck card', () => {
+        const newState = getNewGame(TestActions.TURN_CARD);
+        expect(newState.DECK.upturned).toInclude({ rank:'2', suit:'CLUBS' }, cardsEqual);
+        expect(newState.DECK.upturned).toInclude({ rank:'Q', suit:'CLUBS' }, cardsEqual);
+        expect(newState.DECK.downturned).toExclude({ rank:'Q', suit:'CLUBS' }, cardsEqual);
+
+    });
 });
 });

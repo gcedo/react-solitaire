@@ -78,5 +78,9 @@ export default {
             ],
             where: { from: ['DECK', 'upturned'], to: ['FOUNDATION', 'CLUBS'] }
         }
+    },
+
+    TURN_CARD: {
+        type: 'TURN_CARD'
     }
 }
