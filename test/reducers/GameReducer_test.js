@@ -68,9 +68,9 @@ describe('MOVE_CARD', () => {
         expect(
             newState.PILE[5]
         ).toInclude(TestActions.DECK_TO_PILE.payload.cards[0]);
-        // expect(
-        //     newState.DECK
-        // ).toExclude(TestActions.DECK_TO_PILE.payload.cards[0]);
+        expect(
+            newState.DECK.downturned
+        ).toExclude(TestActions.DECK_TO_PILE.payload.cards[0]);
     });
 
     it('should handle from DECK to FOUNDATION');

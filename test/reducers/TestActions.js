@@ -57,11 +57,11 @@ export default {
                 {
                     suit: 'CLUBS',
                     rank: '2',
-                    where: ['DECK'],
+                    where: ['DECK', 'upturned'],
                     upturned: true
                 }
             ],
-            where: { from: ['DECK'], to: ['PILE', 5] }
+            where: { from: ['DECK', 'upturned'], to: ['PILE', 5] }
         }
     }
 }
