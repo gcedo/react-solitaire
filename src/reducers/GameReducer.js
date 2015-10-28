@@ -1,27 +1,25 @@
 import { Directions } from '../actions';
 import Immutable, { Map, List } from 'immutable';
-import { Suits, Ranks } from '../constants';
+import { Suits, Ranks, Places, ActionTypes } from '../constants';
 import range from 'lodash/utility/range';
 import shuffle from 'lodash/collection/shuffle';
 import first from 'lodash/array/first';
 import flatten from 'lodash/array/flatten';
 
-const orderedDeck = flatten(
+export const OrderedDeck = flatten(
     Object.keys(Suits).map(suit => Ranks.map(rank => ({ rank, suit })))
 );
 
-function getInitialState() {
-    const cards = shuffle(orderedDeck);
+function getInitialState(cards) {
     return Map({
-        FOUNDATION: Map({
+        [Places.FOUNDATION]: Map({
             HEARTS: List(),
             SPADES: List(),
             DIAMONDS: List(),
             CLUBS: List()
         }),
-
-        PILE: getPiles(cards),
-        DECK: Map({
+        [Places.PILE]: getPiles(cards),
+        [Places.DECK]: Map({
             upturned: List(cards.slice(-1)),
             downturned: List(cards.slice(21, -1))
         })
@@ -44,7 +42,7 @@ function upturnFirstCard(cards) {
 }
 
 /**
- * Returns true if the player ismoving more than one card from one pile to
+ * Returns true if the player is moving more than one card from one pile to
  * another, false otherwise.
  *
  * @param  {Object} where Object describing:
@@ -55,8 +53,8 @@ function upturnFirstCard(cards) {
  *                        another, false otherwise.
  */
 function movingMultipleCardsFromPileToPile(where, cards) {
-    return first(where.from) === 'PILE' &&
-           first(where.to) === 'PILE' &&
+    return first(where.from) === Places.PILE &&
+           first(where.to) === Places.PILE &&
            !first(cards).isLast;
 }
 
@@ -69,18 +67,17 @@ function moveCards(state, action) {
     const target = state.getIn(where.to).concat(cards);
     source = source.slice(0, -cards.length);
 
-    if (first(where.from) === 'PILE') source = upturnFirstCard(source);
+    if (first(where.from) === Places.PILE) source = upturnFirstCard(source);
 
     return state
         .updateIn(where.to, value => target)
         .updateIn(where.from, value => source);
 }
 
-
 function turnCard(state, action) {
     let deck = Map();
-    const upturnedCards = state.getIn(['DECK', 'upturned']);
-    const downturnedCards = state.getIn(['DECK', 'downturned']);
+    const upturnedCards = state.getIn([Places.DECK, 'upturned']);
+    const downturnedCards = state.getIn([Places.DECK, 'downturned']);
     if (downturnedCards.isEmpty()) {
         deck = deck.set('downturned', List(upturnedCards));
         deck = deck.set('upturned', List());
@@ -89,14 +86,17 @@ function turnCard(state, action) {
         deck = deck.set('upturned', upturnedCards.push(downturnedCards.first()));
     }
 
-    return state.set('DECK', deck);
+    return state.set(Places.DECK, deck);
 }
 
-export default function game(state = getInitialState(), action) {
+export default function game(
+    state = getInitialState(shuffle(OrderedDeck)),
+    action
+) {
     switch (action.type) {
-    case 'MOVE_CARD':
+    case ActionTypes.MOVE_CARD:
         return moveCards(state, action);
-    case 'TURN_CARD':
+    case ActionTypes.TURN_CARD:
         return turnCard(state, action);
     default:
         return state;
