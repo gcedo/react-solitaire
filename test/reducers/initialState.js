@@ -7,7 +7,7 @@ export default
         HEARTS:[],
         SPADES:[],
         DIAMONDS:[],
-        CLUBS:[]
+        CLUBS:[{ rank:'A', suit:'CLUBS' }]
       },
       PILE:[
         [
@@ -65,7 +65,6 @@ export default
           { rank:'J', suit:'CLUBS' },
           { rank:'2', suit:'DIAMONDS' },
           { rank:'10', suit:'HEARTS' },
-          { rank:'A', suit:'CLUBS' },
           { rank:'8', suit:'HEARTS' },
           { rank:'6', suit:'HEARTS' },
           { rank:'7', suit:'SPADES' },

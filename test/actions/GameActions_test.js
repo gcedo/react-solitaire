@@ -2,7 +2,7 @@ import { ActionTypes as types } from '../../src/constants';
 import * as actions from '../../src/actions';
 import expect from 'expect';
 
-describe('actions', () => {
+describe('GameActions', () => {
     it('should create an action to turn a deck card', () => {
         const expectedAction = { type: types.TURN_CARD };
         expect(actions.turnCard()).toEqual(expectedAction);

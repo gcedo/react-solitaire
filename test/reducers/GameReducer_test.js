@@ -4,21 +4,20 @@ import { ActionTypes as types } from '../../src/constants';
 import TestActions from './TestActions.js';
 import initialState from './initialState.js';
 
+function getNewState(state) {
+    return action => reducer(state, action).game.toJS();
+}
+
+const getNewGame = getNewState(initialState);
+
+describe('GameReducer', function () {
 describe('MOVE_CARD', () => {
     it('should handle from PILE to FOUNDATION', () => {
-        const newState = reducer(
-            initialState,
-            TestActions.PILE_TO_FOUNDATION
-        ).game.toJS();
+        const newState = getNewGame(TestActions.PILE_TO_FOUNDATION);
         expect(
             newState.FOUNDATION.DIAMONDS
         ).toEqual(
-            [ { suit: 'DIAMONDS',
-                rank: 'A',
-                where: [ 'PILE', 2 ],
-                upturned: true,
-                isLast: true,
-                index: 0 } ]
+            TestActions.PILE_TO_FOUNDATION.payload.cards
         );
 
         expect(newState.PILE[2].length).toBe(2);
@@ -30,11 +29,7 @@ describe('MOVE_CARD', () => {
     });
 
     it('should handle from PILE to PILE', () => {
-        const newState = reducer(
-            initialState,
-            TestActions.PILE_TO_PILE
-        ).game.toJS();
-
+        const newState = getNewGame(TestActions.PILE_TO_PILE);
         expect(
             newState.PILE[5]
         ).toContain(TestActions.PILE_TO_PILE.payload.cards[0]);
@@ -44,12 +39,10 @@ describe('MOVE_CARD', () => {
         ).toExclude(TestActions.PILE_TO_PILE.payload.cards[0])
     });
 
-    it('should handle from FOUNDATION to PILE', () => {
-        const newState = reducer(
-            initialState,
-            TestActions.FOUNDATION_TO_PILE
-        ).game.toJS();
+    it('should handle from PILE to PILE, multiple cards');
 
+    it('should handle from FOUNDATION to PILE', () => {
+        const newState = getNewGame(TestActions.FOUNDATION_TO_PILE);
         expect(
             newState.PILE[2]
         ).toInclude(TestActions.FOUNDATION_TO_PILE.payload.cards[0]);
@@ -60,20 +53,34 @@ describe('MOVE_CARD', () => {
     });
 
     it('should handle from DECK to PILE', () => {
-        const newState = reducer(
-            initialState,
-            TestActions.DECK_TO_PILE
-        ).game.toJS();
-
+        const newState = getNewGame(TestActions.DECK_TO_PILE);
         expect(
             newState.PILE[5]
         ).toInclude(TestActions.DECK_TO_PILE.payload.cards[0]);
+        expect(
+            newState.DECK.upturned
+        ).toExclude(TestActions.DECK_TO_PILE.payload.cards[0]);
         expect(
             newState.DECK.downturned
         ).toExclude(TestActions.DECK_TO_PILE.payload.cards[0]);
     });
 
-    it('should handle from DECK to FOUNDATION');
+    it('should handle from DECK to FOUNDATION', () => {
+        const newState = getNewGame(TestActions.DECK_TO_FOUNDATION);
+        expect(
+            newState.FOUNDATION.CLUBS
+        ).toInclude(TestActions.DECK_TO_FOUNDATION.payload.cards[0]);
+        expect(
+            newState.DECK.upturned
+        ).toExclude(TestActions.DECK_TO_FOUNDATION.payload.cards[0]);
+        expect(
+            newState.DECK.downturned
+        ).toExclude(TestActions.DECK_TO_FOUNDATION.payload.cards[0]);
+    });
 
 });
 
+describe('TURN_CARD', () => {
+    it('should turn a deck card');
+});
+});

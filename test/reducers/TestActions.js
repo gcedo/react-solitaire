@@ -63,5 +63,20 @@ export default {
             ],
             where: { from: ['DECK', 'upturned'], to: ['PILE', 5] }
         }
+    },
+
+    DECK_TO_FOUNDATION: {
+        type: 'MOVE_CARD',
+        payload: {
+            cards: [
+                {
+                    suit: 'CLUBS',
+                    rank: '2',
+                    where: ['DECK', 'upturned'],
+                    upturned: true
+                }
+            ],
+            where: { from: ['DECK', 'upturned'], to: ['FOUNDATION', 'CLUBS'] }
+        }
     }
 }
