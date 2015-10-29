@@ -33,7 +33,7 @@ class SmartDeck extends React.Component {
 
     render() {
         const { deck, turnCard } = this.props;
-        const firstCard = last(deck.upturned);
+        const lastCard = last(deck.upturned);
         return (
             <div style={{
                 display: 'flex',
@@ -44,7 +44,7 @@ class SmartDeck extends React.Component {
                     <Card />
                 </Deck>
                 <UpturnedCard>
-                    <DraggableCard {...firstCard}
+                    <DraggableCard {...lastCard}
                         upturned
                         where={[Places.DECK, 'upturned']}
                     />
