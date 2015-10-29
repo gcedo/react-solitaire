@@ -12,12 +12,10 @@ const Points = {
     [Places.FOUNDATION]: {
         [Places.PILE]: -15
     }
-}
+};
 
-function getPoints(points) {
-    return (source, target) =>
-        points[source][target] !== undefined && points[source][target] || 0
-}
+const getPoints = (points) => (source, target) =>
+    points[source][target] !== undefined && points[source][target] || 0;
 
 function handleCardMove(state, action) {
     const { where } = action.payload;
