@@ -1,7 +1,5 @@
 # react-solitaire 
-React implementation of the famous solitaire card game [http://gcedo.github.io/react-solitaire/](http://gcedo.github.io/react-solitaire/)
-
-Featuring a suite of technologies for frontend development that I do deeply cherish:
+React implementation of the famous solitaire card game, featuring a suite of technologies for frontend development that I do deeply cherish:
 
 - ui ➜ [react](https://facebook.github.io/react/)
 - application architecture ➜ [redux](http://redux.js.org/)
@@ -12,7 +10,6 @@ Featuring a suite of technologies for frontend development that I do deeply cher
 - testing ➜ [mocha](https://mochajs.org/)
 
 Take a look at the [demo](http://gcedo.github.io/react-solitaire/dist/index.html).
-
 
 ## Quick Start
 ```
