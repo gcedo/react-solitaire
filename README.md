@@ -1,9 +1,20 @@
-# react-solitaire
+# react-solitaire 
+React implementation of the famous solitaire card game [http://gcedo.github.io/react-solitaire/](http://gcedo.github.io/react-solitaire/)
 
-[Demo](http://gcedo.github.io/react-solitaire/dist/index.html)
+Featuring a suite of technologies for frontend development that I do deeply cherish:
 
-React implementation of the famous solitaire card game, Klondike version. 
+- ui ➜ [react](https://facebook.github.io/react/)
+- application architecture ➜ [redux](http://redux.js.org/)
+- drag & drop ➜ [react-dnd](http://gaearon.github.io/react-dnd/)
+- immutable data ➜ [immutable](https://facebook.github.io/immutable-js/)
+- transpiling ➜ [babel](https://babeljs.io/)
+- bundling ➜ [webpack](https://webpack.github.io/)
+- testing ➜ [mocha](https://mochajs.org/)
 
+Take a look at the [demo](http://gcedo.github.io/react-solitaire/dist/index.html).
+
+
+## Quick Start
 ```
 $ npm install 
 $ npm start
