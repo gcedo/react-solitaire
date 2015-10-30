@@ -9,7 +9,7 @@ import { connect } from 'react-redux';
 import ActionCreators from '../../actions';
 import { Colors, Dimensions } from '../../constants';
 
-@connect((state) => { return { game: state.game.toJS() } })
+@connect((state) => { return { game: state.game.toJS(), score: state.score } })
 @DragDropContext(HTML5Backend)
 class Game extends React.Component {
 
@@ -24,9 +24,9 @@ class Game extends React.Component {
     }
 
     render() {
-        const { game } = this.props;
+        const { game, score } = this.props;
         const { moveCards, turnCard } = this;
-
+        console.log(score);
         return (
             <div style={{
                 width: Dimensions.Game.width,
@@ -34,6 +34,7 @@ class Game extends React.Component {
                 backgroundColor: Colors.Game.backgroundColor,
                 padding: 10
             }}>
+                <div>{score}</div>
                 <div style={{display: 'flex', justifyContent: 'space-between'}}>
                     <SmartDeck deck={game.DECK} turnCard={turnCard} />
                     <div style={{
