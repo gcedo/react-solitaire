@@ -2,12 +2,15 @@ import React, { PropTypes as T } from 'react';
 import Overlay from './Overlay.jsx';
 import SuitAndRank from './SuitAndRank.jsx';
 import SuitSymbol from './SuitSymbol.jsx';
+import RankSymbol from './RankSymbol.jsx';
+import ReactSymbol from './ReactSymbol.jsx';
 import { CardsLayouts } from '../../constants';
 import { Shadows, Suits, Ranks, RanksValues, Colors, Dimensions } from '../../constants';
 
 const Card =
 ({rank, suit, upturned, style, isOver, canDrop, isMouseOver, isDragging}) => {
     let suitSymbols;
+    let rankSymbol;
     let _style = {
         background: upturned ? Colors.Card.upturned : Colors.Card.downturned,
         borderRadius: Dimensions.Card.borderRadius,
@@ -23,7 +26,8 @@ const Card =
         transition: 'all 250ms',
         ...style
     };
-    if (!upturned) { return <div style={_style} />; }
+    if (!upturned) { return <div style={_style}><ReactSymbol color={Colors.React} /></div>; }
+    if (!rank || !suit) { return <span />; }
 
     if (isMouseOver) {
         _style = {..._style,
@@ -37,7 +41,7 @@ const Card =
         suitSymbols = CardsLayouts[rank].map((style, i) =>
             <SuitSymbol style={style} suit={suit} key={i} />
         );
-    } else _style = { ..._style, ...CardsLayouts[rank] };
+    } else rankSymbol = <RankSymbol symbol={CardsLayouts[rank]} />;
 
 
     return (
@@ -46,6 +50,7 @@ const Card =
             <SuitAndRank suit={suit} rank={rank} position={{top: 4, left: 5}} />
             <SuitAndRank suit={suit} rank={rank} position={{bottom: 4, right: 5}} />
             {suitSymbols}
+            {rankSymbol}
         </div>
     );
 

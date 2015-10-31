@@ -2,7 +2,7 @@ import React, { findDOMNode, PropTypes as T } from 'react';
 import Pile from '../display/Pile.jsx';
 import { List } from 'immutable';
 import Card from '../display/Card.jsx';
-import { Suits, Ranks } from '../../constants';
+import { Suits, Ranks, Colors } from '../../constants';
 import DraggableCard from './DraggableCard.jsx';
 import { DropTarget } from 'react-dnd';
 
@@ -18,7 +18,12 @@ const pileTarget = {
 };
 
 function collect(connect, monitor) {
-    return { connectDropTarget: connect.dropTarget() };
+    return {
+        connectDropTarget: connect.dropTarget(),
+        isOver: monitor.isOver(),
+        canDrop: monitor.canDrop(),
+        suit: monitor.getItem() && monitor.getItem().suit
+    };
 };
 
 
@@ -44,8 +49,7 @@ class SmartPile extends React.Component {
 
     render() {
         const { cards } = this.props;
-        const pileIndex = this.props.index;
-        const { connectDropTarget } = this.props;
+        const { connectDropTarget, canDrop, isOver, suit } = this.props;
         const renderedCards = cards.map((card, index, array) => {
             if (card.upturned) {
                 return (
@@ -54,7 +58,7 @@ class SmartPile extends React.Component {
                         index={index}
                         upturned
                         key={card.suit + card.rank}
-                        where={['PILE', pileIndex]}
+                        where={['PILE', this.props.index]}
                     />
                 );
             } else {
@@ -63,7 +67,7 @@ class SmartPile extends React.Component {
         });
         return connectDropTarget(
             <div>
-                <Pile>
+                <Pile isOver={isOver} canDrop={canDrop} color={Colors[suit]}>
                     {renderedCards}
                 </Pile>
             </div>

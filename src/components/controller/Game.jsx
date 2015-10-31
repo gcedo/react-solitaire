@@ -34,7 +34,6 @@ class Game extends React.Component {
                 backgroundColor: Colors.Game.backgroundColor,
                 padding: 10
             }}>
-                <div>{score}</div>
                 <div style={{display: 'flex', justifyContent: 'space-between'}}>
                     <SmartDeck deck={game.DECK} turnCard={turnCard} />
                     <div style={{

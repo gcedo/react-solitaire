@@ -6,7 +6,9 @@ const Foundation = ({ children, suit, isOver, canDrop }) => {
     const color = isOver && canDrop && Colors[suit] || Colors.Game.backgroundColor;
     return (
         <div style={{
-            backgroundColor: isOver && canDrop && Colors.Card.upturned || '#388E3C',
+            backgroundColor:
+                isOver && canDrop && Colors.Card.upturned
+                || Colors.Foundation.backgroundColor,
             border: '1px solid #388E3C',
             borderRadius: 2,
             boxSizing: 'border-box',

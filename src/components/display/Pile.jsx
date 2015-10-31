@@ -1,6 +1,8 @@
 import React, { PropTypes as T } from 'react';
+import RankSymbol from './RankSymbol.jsx';
+import { Colors, Dimensions, CardsLayouts } from '../../constants';
 
-const Pile = ({ children }) => {
+const Pile = ({ children, isOver, canDrop, color }) => {
     let top = -5;
 
     const cards = React.Children.map(children, (element, index) => {
@@ -11,20 +13,24 @@ const Pile = ({ children }) => {
             element,
             { style: {
                 top,
-                position: 'absolute',
-                // transform: `rotate(${element.props.rotation}deg)`
+                position: 'absolute'
             } }
         )
     });
 
     return (
         <div style={{
-            backgroundColor: '#388E3C',
+            backgroundColor:
+                isOver && canDrop && Colors.Card.upturned
+                || Colors.Foundation.backgroundColor,
             position: 'relative',
-            height: 175 + 5 * (cards.length-1),
-            width: 125
+            color: isOver && canDrop && color || Colors.Game.backgroundColor,
+            height: Dimensions.Card.height + 5 * (cards.length-1),
+            width: Dimensions.Card.width,
+            transition: 'all 250ms'
         }}>
             {cards}
+            {!children.length && <RankSymbol symbol={CardsLayouts.K} />}
         </div>
     );
 }

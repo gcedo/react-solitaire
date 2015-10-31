@@ -19,8 +19,10 @@ export const Colors = {
     },
 
     Foundation: {
+        backgroundColor: '#388E3C'
+    },
 
-    }
+    React: '#00d8ff'
 };
 
 export const Shadows = {
@@ -86,7 +88,7 @@ export const CardsLayouts = {
     get 10 () {
         return this[9].concat({ bottom: 40, right: 37.5,  transform: 'rotate(180deg)' })
     },
-    J: { },
-    Q: { },
-    K: { },
+    J: '♗',
+    Q: '♕',
+    K: '♔',
 }
