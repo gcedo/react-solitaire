@@ -1,9 +1,11 @@
-[![Build Status](https://travis-ci.org/gcedo/react-solitaire.svg?branch=master)](https://travis-ci.org/gcedo/react-solitaire)
 # react-solitaire
+
+React implementation of the famous solitaire card game
+[![Build Status](https://travis-ci.org/gcedo/react-solitaire.svg?branch=master)](https://travis-ci.org/gcedo/react-solitaire)
 
 ![Demo](demo.gif)
 
-React implementation of the famous solitaire card game, featuring a suite of technologies for frontend development that I do deeply cherish:
+React-solitaire features a suite of technologies for frontend development that I do deeply cherish:
 
 - ui ➜ [react](https://facebook.github.io/react/)
 - application architecture ➜ [redux](http://redux.js.org/)
