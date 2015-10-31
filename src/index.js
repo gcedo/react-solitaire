@@ -9,8 +9,11 @@ import Pile from './components/display/Pile.jsx';
 import SmartPile from './components/controller/SmartPile.jsx';
 import Foundation from './components/display/Foundation.jsx';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
+import { compose, createStore } from 'redux';
 import reducers from './reducers';
+import { devTools, persistState  } from 'redux-devtools';
+import { DevTools, DebugPanel } from 'redux-devtools/lib/react';
+import SliderMonitor from 'redux-slider-monitor';
 
 let cards = [];
 Object.keys(Suits).forEach(suit => {
@@ -19,12 +22,22 @@ Object.keys(Suits).forEach(suit => {
     })
 })
 
-const store = createStore(reducers);
+const finalCreateStore = compose(
+  devTools(),
+  persistState(window.location.href.match(/[?&]debug_session=([^&]+)\b/))
+)(createStore);
+const store = finalCreateStore(reducers);
+
 ReactDOM.render(
+  <div>
     <Provider store={store}>
         <Game />
-    </Provider>,
-    document.getElementById('game')
+    </Provider>
+    <DebugPanel left right bottom>
+      <DevTools store={store} monitor={SliderMonitor} />
+    </DebugPanel>
+  </div>,
+  document.getElementById('game')
 );
 
 ReactDOM.render(
