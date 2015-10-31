@@ -1,4 +1,7 @@
-# react-solitaire 
+# react-solitaire
+
+![Demo](demo.gif)
+
 React implementation of the famous solitaire card game, featuring a suite of technologies for frontend development that I do deeply cherish:
 
 - ui ➜ [react](https://facebook.github.io/react/)
@@ -13,7 +16,7 @@ Take a look at the [demo](http://gcedo.github.io/react-solitaire/dist/index.html
 
 ## Quick Start
 ```
-$ npm install 
+$ npm install
 $ npm start
 $ open http://localhost:3000
 ```
