@@ -1,7 +1,7 @@
 # react-solitaire
 
 [![Build Status](https://travis-ci.org/gcedo/react-solitaire.svg?branch=master)](https://travis-ci.org/gcedo/react-solitaire)
-[![Dependencies](https://david-dm.org/gcedo/react-solitaire.svg)](https://david-dm.org/gcedo/react-solitaire.svg)
+[![Dependencies](https://david-dm.org/gcedo/react-solitaire.svg)](https://david-dm.org/gcedo/react-solitaire)
 
 React implementation of the famous solitaire card game
 
