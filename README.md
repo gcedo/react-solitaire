@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/gcedo/react-solitaire.svg?branch=master)](https://travis-ci.org/gcedo/react-solitaire)
 # react-solitaire
 
 ![Demo](demo.gif)
