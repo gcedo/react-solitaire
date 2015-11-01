@@ -16,7 +16,7 @@ const cardsEqual = (a, b) => a.rank === b.rank && a.suit === b.suit;
 describe('GameReducer', function () {
 
 describe('Initial State', function () {
-    it('should check that all the cards have been dealt', () => {
+    it('all the cards should have been dealt', () => {
         const state = getNewState()({});
         const dealtDeck = state.DECK.upturned
             .concat(state.DECK.downturned)
