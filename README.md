@@ -1,6 +1,7 @@
 # react-solitaire
 
 [![Build Status](https://travis-ci.org/gcedo/react-solitaire.svg?branch=master)](https://travis-ci.org/gcedo/react-solitaire)
+[![Coverage Status](https://coveralls.io/repos/gcedo/react-solitaire/badge.svg?branch=master&service=github)](https://coveralls.io/github/gcedo/react-solitaire?branch=master)
 [![Dependencies](https://david-dm.org/gcedo/react-solitaire.svg)](https://david-dm.org/gcedo/react-solitaire)
 
 React implementation of the famous solitaire card game
