@@ -5,6 +5,7 @@ import Card from '../display/Card.jsx';
 import { Suits, Ranks, Colors } from '../../constants';
 import DraggableCard from './DraggableCard.jsx';
 import { DropTarget } from 'react-dnd';
+import last from 'lodash/array/last';
 
 const pileTarget = {
     drop(props, monitor, component) {
@@ -13,7 +14,7 @@ const pileTarget = {
 
     canDrop(props, monitor, component) {
         const { rank } = monitor.getItem();
-        return rank === 'K';
+        return rank === last(Ranks) && props.cards.length === 0;
     }
 };
 
