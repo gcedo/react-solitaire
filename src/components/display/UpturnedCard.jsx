@@ -19,4 +19,3 @@ const UpturnedCard = ({ children }) => {
 }
 
 export default UpturnedCard;
-// ✪

@@ -8,8 +8,8 @@
     "build:webpack": "NODE_ENV=production webpack --config webpack.config.prod.js",
     "test": "mocha --compilers js:babel/register --recursive",
     "test:watch": "npm test -- --watch",
-    "coverage": "babel-node ./node_modules/.bin/isparta cover _mocha -- --recursive --compilers js:babel/register",
-    "coveralls": "babel-node ./node_modules/.bin/isparta cover ./node_modules/mocha/bin/_mocha --report lcovonly -- --recursive -R spec && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage"
+    "coverage": "babel-node ./node_modules/.bin/isparta cover --include-all-sources _mocha -- --recursive --compilers js:babel/register",
+    "coveralls": "babel-node ./node_modules/.bin/isparta cover --include-all-sources ./node_modules/mocha/bin/_mocha --report lcovonly -- --recursive -R spec && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage"
   },
   "keywords": [
     "react",
@@ -42,12 +42,15 @@
     "isparta": "^3.5.0",
     "mocha": "^2.3.3",
     "mocha-lcov-reporter": "^1.0.0",
+    "react-addons-test-utils": "^0.14.1",
     "react-transform-catch-errors": "^1.0.0",
     "react-transform-hmr": "^1.0.0",
     "redbox-react": "^1.0.1",
     "redux-devtools": "^2.1.5",
     "redux-slider-monitor": "^0.6.3",
     "rimraf": "^2.4.3",
+    "unexpected": "^10.0.2",
+    "unexpected-react-shallow": "^0.7.0",
     "webpack": "^1.9.6",
     "webpack-dev-middleware": "^1.2.0",
     "webpack-dev-server": "^1.11.0",
