@@ -22,7 +22,8 @@ function getInitialState(cards) {
         [Places.DECK]: Map({
             upturned: List(cards.slice(-1)),
             downturned: List(cards.slice(21, -1))
-        })
+        }),
+        winner: false
     });
 }
 
@@ -58,6 +59,15 @@ function movingMultipleCardsFromPileToPile(where, cards) {
            !first(cards).isLast;
 }
 
+function isPlayerWinner(state) {
+    return state.get(Places.FOUNDATION)
+        .every(foundation => foundation.size === Ranks.length);
+}
+
+function updateWinner(state) {
+    return state.update('winner', value => isPlayerWinner(state))
+}
+
 function moveCards(state, action) {
     let { cards, where } = action.payload;
     let source = state.getIn(where.from)
@@ -69,10 +79,13 @@ function moveCards(state, action) {
 
     if (first(where.from) === Places.PILE) source = upturnFirstCard(source);
 
-    return state
-        .updateIn(where.to, value => target)
-        .updateIn(where.from, value => source);
+    return updateWinner(
+        state
+            .updateIn(where.to, value => target)
+            .updateIn(where.from, value => source)
+    );
 }
+
 
 function turnCard(state, action) {
     let deck = Map();
