@@ -64,7 +64,6 @@ ReactDOM.render(
     document.getElementById('pile')
 );
 
-
 ReactDOM.render(
     <Foundation />, document.getElementById('foundation')
 );

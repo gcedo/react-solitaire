@@ -6,12 +6,13 @@ import RankSymbol from './RankSymbol.jsx';
 import ReactSymbol from './ReactSymbol.jsx';
 import { CardsLayouts } from '../../constants';
 import { Shadows, Suits, Ranks, RanksValues, Colors, Dimensions } from '../../constants';
+import prefixer from 'react-prefixer';
 
 const Card =
 ({rank, suit, upturned, style, isOver, canDrop, isMouseOver, isDragging}) => {
     let suitSymbols;
     let rankSymbol;
-    let _style = {
+    let _style = prefixer({
         background: upturned ? Colors.Card.upturned : Colors.Card.downturned,
         borderRadius: Dimensions.Card.borderRadius,
         boxShadow: Shadows.Level1,
@@ -23,9 +24,10 @@ const Card =
         width: Dimensions.Card.width,
         height: Dimensions.Card.height,
         cursor: upturned ? '-webkit-grab' : 'inherit',
+        userSelect: 'none',
         transition: 'all 250ms',
         ...style
-    };
+    });
     if (!upturned) { return <div style={_style}><ReactSymbol color={Colors.React} /></div>; }
     if (!rank || !suit) { return <span />; }
 
