@@ -23,7 +23,7 @@ const Card =
         position: 'relative',
         width: Dimensions.Card.width,
         height: Dimensions.Card.height,
-        cursor: upturned ? '-webkit-grab' : 'inherit',
+        cursor: upturned ? 'grab' : 'inherit',
         userSelect: 'none',
         transition: 'all 250ms',
         ...style

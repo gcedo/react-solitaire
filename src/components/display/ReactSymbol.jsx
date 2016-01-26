@@ -4,6 +4,7 @@ import { Colors } from '../../constants';
 const ReactSymbol = ({ color }) => {
     return (
         <div style={{
+            fontFamily: 'Arial',
             fontSize: 150,
             position: 'absolute',
             top: -4,
