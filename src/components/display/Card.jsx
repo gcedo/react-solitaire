@@ -4,8 +4,7 @@ import SuitAndRank from './SuitAndRank.jsx';
 import SuitSymbol from './SuitSymbol.jsx';
 import RankSymbol from './RankSymbol.jsx';
 import ReactSymbol from './ReactSymbol.jsx';
-import { CardsLayouts } from '../../constants';
-import { Shadows, Suits, Ranks, RanksValues, Colors, Dimensions } from '../../constants';
+import { Shadows, Suits, Ranks, RanksValues, Colors, Dimensions, CardsLayouts } from '../../constants';
 import prefixer from 'react-prefixer';
 
 const Card =

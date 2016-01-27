@@ -1,4 +1,4 @@
-import React, { findDOMNode, PropTypes as T } from 'react';
+import React, { PropTypes as T } from 'react';
 import Pile from '../display/Pile.jsx';
 import { List } from 'immutable';
 import Card from '../display/Card.jsx';

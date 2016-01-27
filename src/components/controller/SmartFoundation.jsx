@@ -1,9 +1,9 @@
-import React, { findDOMNode, PropTypes as T } from 'react';
+import React, { PropTypes as T } from 'react';
 import Foundation from '../display/Foundation.jsx';
 import ActionCreators, { Directions } from '../../actions';
 import DraggableCard from './DraggableCard.jsx';
 import first from 'lodash/array/first';
-import { RanksValues, Suits, Ranks } from '../../constants';
+import { Suits } from '../../constants';
 import { DropTarget } from 'react-dnd';
 
 const foundationTarget = {

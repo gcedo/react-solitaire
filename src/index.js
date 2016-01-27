@@ -4,9 +4,7 @@ import Game from './components/controller/Game.jsx';
 import Card from './components/display/Card.jsx';
 import { Suits, Ranks } from './constants';
 import Deck from './components/display/Deck.jsx';
-import SmartDeck from './components/controller/SmartDeck.jsx';
 import Pile from './components/display/Pile.jsx';
-import SmartPile from './components/controller/SmartPile.jsx';
 import Foundation from './components/display/Foundation.jsx';
 import { Provider } from 'react-redux';
 import { compose, createStore } from 'redux';
@@ -52,7 +50,6 @@ ReactDOM.render(
         <Card rank="A" suit="HEARTS" upturned/>
     </Deck>,
     document.getElementById('deck')
-
 );
 
 ReactDOM.render(
