@@ -1,5 +1,5 @@
 import React from 'react';
-import { Colors, Dimensions } from '../../constants';
+import { Dimensions } from '../../constants';
 
 const Overlay = ({ color }) => {
     return <div style={{
@@ -11,7 +11,6 @@ const Overlay = ({ color }) => {
         width: Dimensions.Card.width,
         height: Dimensions.Card.height
     }} />;
-
 }
 
 export default Overlay;

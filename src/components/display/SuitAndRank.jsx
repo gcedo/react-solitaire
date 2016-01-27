@@ -1,5 +1,5 @@
 import React, { PropTypes as T } from 'react';
-import { Suits, Ranks} from '../../constants';
+import { Suits, Ranks } from '../../constants';
 
 const SuitAndRank = ({ suit, rank, position }) => {
     return (
@@ -13,8 +13,8 @@ const SuitAndRank = ({ suit, rank, position }) => {
             <div style={{
                 position: 'relative',
                 top: -5,
-                textAlign: 'center'}}
-            >
+                textAlign: 'center'
+            }}>
                 {Suits[suit]}
             </div>
         </div>

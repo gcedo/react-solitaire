@@ -3,11 +3,9 @@ import Card from '../display/Card.jsx';
 import { Suits, Ranks } from '../../constants';
 import UpturnedCard from '../display/UpturnedCard.jsx';
 import Deck from '../display/Deck.jsx';
-import head from 'lodash/array/head';
 import { List } from 'immutable';
 import DraggableCard from './DraggableCard.jsx';
 import last from 'lodash/array/last';
-import ActionCreators from '../../actions';
 import { Places } from '../../constants';
 
 class SmartDeck extends React.Component {

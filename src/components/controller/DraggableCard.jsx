@@ -1,11 +1,9 @@
 import React, { PropTypes as T } from 'react';
 import Card from '../display/Card.jsx';
-import { Ranks, Suits, RanksValues, Colors } from '../../constants';
-import { DragSource } from 'react-dnd';
-import { DropTarget } from 'react-dnd';
-import ActionCreators, { Directions } from '../../actions';
+import { Ranks, Suits, RanksValues, Places, Colors } from '../../constants';
+import { DragSource, DropTarget } from 'react-dnd';
+import ActionCreators from '../../actions';
 import { connect } from 'react-redux';
-import { Places } from '../../constants';
 import first from 'lodash/array/first';
 
 const cardSource = {

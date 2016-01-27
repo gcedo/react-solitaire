@@ -1,11 +1,11 @@
 import React from 'react';
 import { Suits, Colors } from '../../constants';
-
+import prefixer from 'react-prefixer';
 
 const Foundation = ({ children, suit, isOver, canDrop }) => {
     const color = isOver && canDrop && Colors[suit] || Colors.Game.backgroundColor;
     return (
-        <div style={{
+        <div style={ prefixer({
             backgroundColor:
                 isOver && canDrop && Colors.Card.upturned
                 || Colors.Foundation.backgroundColor,
@@ -15,9 +15,9 @@ const Foundation = ({ children, suit, isOver, canDrop }) => {
             width: 125,
             height: 175,
             position: 'relative',
+            userSelect: 'none',
             transition: 'all 250ms'
-
-        }}>
+        }) }>
             <div style={{
                 color,
                 transition: 'all 250ms',
@@ -29,6 +29,7 @@ const Foundation = ({ children, suit, isOver, canDrop }) => {
                 lineHeight: '175px',
                 textAlign: 'center',
                 fontSize: 40,
+                cursor: 'default'
             }}>
                 {Suits[suit]}
             </div>
