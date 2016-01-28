@@ -4,12 +4,13 @@ import { Colors } from '../../constants';
 const ReactSymbol = ({ color }) => {
     return (
         <div style={{
-            fontSize: 150,
+            fontSize: 120,
             position: 'absolute',
-            top: -4,
-            left: 17,
-            color: color,
-            bottom: 0
+            top: '6%',
+            left: 0,
+            right: 0,
+            textAlign: 'center',
+            color: color
         }}>
             ⚛
         </div>
