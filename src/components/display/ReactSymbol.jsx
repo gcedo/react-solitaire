@@ -5,6 +5,7 @@ const ReactSymbol = ({ color }) => {
     return (
         <div style={{
             fontSize: 120,
+            fontFamily: "Apple Symbols",
             position: 'absolute',
             top: '6%',
             left: 0,
