@@ -17,7 +17,7 @@ const Card =
         boxShadow: Shadows.Level1,
         boxSizing: 'border-box',
         color: Colors[suit],
-        fontFamily: 'Helvetica',
+        fontFamily: 'Arial',
         padding: 4,
         position: 'relative',
         width: Dimensions.Card.width,
