@@ -65,7 +65,7 @@ function moveCards(state, action) {
         cards = source.slice(first(cards).index);
     }
     const target = state.getIn(where.to).concat(cards);
-    source = source.slice(0, -cards.length);
+    source = source.slice(0, -cards.size);
 
     if (first(where.from) === Places.PILE) source = upturnFirstCard(source);
 
