@@ -40,7 +40,9 @@ const cardTarget = {
 
         if (destination === Places.FOUNDATION) {
             return draggedCard.suit === suit &&
-               RanksValues[draggedCard.rank] === RanksValues[rank] + 1;
+               RanksValues[draggedCard.rank] === RanksValues[rank] + 1
+               && ( (draggedCard.where[0] === Places.PILE && draggedCard.isLast )
+                    || draggedCard.where[0] === Places.DECK);
         } else if (destination === Places.PILE) {
             return props.isLast && Colors[draggedCard.suit] !== Colors[suit] &&
                 RanksValues[draggedCard.rank] === RanksValues[rank] - 1;
