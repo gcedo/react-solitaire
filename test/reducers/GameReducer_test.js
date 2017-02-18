@@ -59,6 +59,13 @@ describe('MOVE_CARD', () => {
         ).toExclude(TestActions.PILE_TO_PILE.payload.cards[0])
     });
 
+    it('should handle from PILE to the same PILE', () => {
+        const newState = getNewGame(TestActions.PILE_TO_SAME_PILE);
+        const expectedState = initialState.game.toJS();
+
+        expect(newState).toEqual(expectedState);
+    });
+
     it('should handle from PILE to PILE, multiple cards');
 
     it('should handle from FOUNDATION to PILE', () => {

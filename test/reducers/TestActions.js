@@ -33,6 +33,23 @@ export default {
         }
     },
 
+    PILE_TO_SAME_PILE: {
+        type: 'MOVE_CARD',
+        payload: {
+            cards: [
+                {
+                    suit: 'SPADES',
+                    rank: '2',
+                    where: ['PILE', 3],
+                    upturned: true,
+                    isLast: true,
+                    index: 4
+                }
+            ],
+            where: { from: ['PILE', 3], to: ['PILE', 3] }
+        }
+    },
+
     FOUNDATION_TO_PILE: {
         type: 'MOVE_CARD',
         payload: {

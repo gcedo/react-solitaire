@@ -60,6 +60,14 @@ function movingMultipleCardsFromPileToPile(where, cards) {
 
 function moveCards(state, action) {
     let { cards, where } = action.payload;
+
+    if( (where.from[0] == Places.PILE) && 
+        (where.to[0] == Places.PILE) && 
+        (where.from[1] == where.to[1])
+    ){
+        return state;
+    }
+    
     let source = state.getIn(where.from)
     if (movingMultipleCardsFromPileToPile(where, cards)) {
         cards = source.slice(first(cards).index);
