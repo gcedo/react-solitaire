@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node devServer.js",
     "build:webpack": "NODE_ENV=production webpack --config webpack.config.prod.js",
-    "test": "mocha --compilers js:babel/register --recursive",
+    "test": "mocha --compilers js:babel-register --recursive",
     "test:watch": "npm test -- --watch",
     "coverage": "babel-node ./node_modules/.bin/isparta cover --include-all-sources _mocha -- --recursive --compilers js:babel/register",
     "coveralls": "babel-node ./node_modules/.bin/isparta cover --include-all-sources ./node_modules/mocha/bin/_mocha --report lcovonly -- --recursive -R spec && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage"
@@ -40,6 +40,7 @@
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
+    "babel-register": "^6.26.0",
     "coveralls": "^2.11.4",
     "eslint": "^4.15.0",
     "eslint-plugin-react": "^7.5.1",
