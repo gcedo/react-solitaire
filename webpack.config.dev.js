@@ -20,7 +20,7 @@ module.exports = {
     loaders: [
       {
         test: /\.jsx?$/,
-        loaders: ['babel'],
+        loaders: ['babel-loader'],
         include: path.join(__dirname, 'src')
       },
       {test: /\.(png|jpg)$/, loader: 'url-loader?limit=8192'}
