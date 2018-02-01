@@ -9,8 +9,8 @@ import Foundation from './components/display/Foundation.jsx';
 import { Provider } from 'react-redux';
 import { compose, createStore } from 'redux';
 import reducers from './reducers';
-import { devTools, persistState  } from 'redux-devtools';
-import { DevTools, DebugPanel } from 'redux-devtools/lib/react';
+import { createDevTools, persistState } from 'redux-devtools';
+import DockMonitor from 'redux-devtools-dock-monitor';
 import SliderMonitor from 'redux-slider-monitor';
 
 let cards = [];
@@ -18,24 +18,33 @@ Object.keys(Suits).forEach(suit => {
     Ranks.forEach(rank => {
         cards.push({ rank, suit })
     })
-})
+});
+
+const DevTools = createDevTools(
+    <DockMonitor
+        defaultPosition='bottom'
+        defaultSize={0.15}
+        toggleVisibilityKey={null}
+        changePositionKey={null}
+    >
+        <SliderMonitor />
+    </DockMonitor>
+);
 
 const finalCreateStore = compose(
-  devTools(),
-  persistState(window.location.href.match(/[?&]debug_session=([^&]+)\b/))
+    DevTools.instrument(),
+    persistState(window.location.href.match(/[?&]debug_session=([^&]+)\b/))
 )(createStore);
 const store = finalCreateStore(reducers);
 
 ReactDOM.render(
-  <div>
-    <Provider store={store}>
-        <Game />
-    </Provider>
-    <DebugPanel left right bottom>
-      <DevTools store={store} monitor={SliderMonitor} />
-    </DebugPanel>
-  </div>,
-  document.getElementById('game')
+    <div>
+        <Provider store={store}>
+            <Game />
+        </Provider>
+        <DevTools store={store} />
+    </div>,
+    document.getElementById('game')
 );
 
 ReactDOM.render(
