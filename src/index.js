@@ -24,8 +24,8 @@ const DevTools = createDevTools(
     <DockMonitor
         defaultPosition='bottom'
         defaultSize={0.15}
-        toggleVisibilityKey={null}
-        changePositionKey={null}
+        toggleVisibilityKey='ctrl-h'
+        changePositionKey='ctrl-q'
     >
         <SliderMonitor />
     </DockMonitor>
