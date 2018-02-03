@@ -11,7 +11,6 @@ import omit from 'lodash/object/omit';
 
 const getNewState = state => action => reducer(state, action).game.toJS();
 const getNewGame = getNewState(initialState);
-const cardsEqual = (a, b) => a.rank === b.rank && a.suit === b.suit;
 
 describe('GameReducer', function () {
 
@@ -43,7 +42,7 @@ describe('MOVE_CARD', () => {
         expect(newState.PILE[2].length).toBe(2);
         expect(
             newState.PILE[2]
-        ).toExclude(
+        ).not.toContain(
             TestActions.PILE_TO_FOUNDATION.payload.cards[0]
         );
     });
@@ -56,7 +55,7 @@ describe('MOVE_CARD', () => {
 
         expect(
             newState.PILE[3]
-        ).toExclude(TestActions.PILE_TO_PILE.payload.cards[0])
+        ).not.toContain(TestActions.PILE_TO_PILE.payload.cards[0])
     });
 
     it('should handle from PILE to PILE, multiple cards');
@@ -65,10 +64,10 @@ describe('MOVE_CARD', () => {
         const newState = getNewGame(TestActions.FOUNDATION_TO_PILE);
         expect(
             newState.PILE[2]
-        ).toInclude(TestActions.FOUNDATION_TO_PILE.payload.cards[0]);
+        ).toContain(TestActions.FOUNDATION_TO_PILE.payload.cards[0]);
         expect(
             newState.FOUNDATION.CLUBS
-        ).toExclude(TestActions.FOUNDATION_TO_PILE.payload.cards[0]);
+        ).not.toContain(TestActions.FOUNDATION_TO_PILE.payload.cards[0]);
 
     });
 
@@ -76,26 +75,26 @@ describe('MOVE_CARD', () => {
         const newState = getNewGame(TestActions.DECK_TO_PILE);
         expect(
             newState.PILE[5]
-        ).toInclude(TestActions.DECK_TO_PILE.payload.cards[0]);
+        ).toContain(TestActions.DECK_TO_PILE.payload.cards[0]);
         expect(
             newState.DECK.upturned
-        ).toExclude(TestActions.DECK_TO_PILE.payload.cards[0]);
+        ).not.toContain(TestActions.DECK_TO_PILE.payload.cards[0]);
         expect(
             newState.DECK.downturned
-        ).toExclude(TestActions.DECK_TO_PILE.payload.cards[0]);
+        ).not.toContain(TestActions.DECK_TO_PILE.payload.cards[0]);
     });
 
     it('should handle from DECK to FOUNDATION', () => {
         const newState = getNewGame(TestActions.DECK_TO_FOUNDATION);
         expect(
             newState.FOUNDATION.CLUBS
-        ).toInclude(TestActions.DECK_TO_FOUNDATION.payload.cards[0]);
+        ).toContain(TestActions.DECK_TO_FOUNDATION.payload.cards[0]);
         expect(
             newState.DECK.upturned
-        ).toExclude(TestActions.DECK_TO_FOUNDATION.payload.cards[0]);
+        ).not.toContain(TestActions.DECK_TO_FOUNDATION.payload.cards[0]);
         expect(
             newState.DECK.downturned
-        ).toExclude(TestActions.DECK_TO_FOUNDATION.payload.cards[0]);
+        ).not.toContain(TestActions.DECK_TO_FOUNDATION.payload.cards[0]);
     });
 
 });
@@ -103,10 +102,9 @@ describe('MOVE_CARD', () => {
 describe('TURN_CARD', () => {
     it('should turn a deck card', () => {
         const newState = getNewGame(TestActions.TURN_CARD);
-        expect(newState.DECK.upturned).toInclude({ rank:'2', suit:'CLUBS' }, cardsEqual);
-        expect(newState.DECK.upturned).toInclude({ rank:'Q', suit:'CLUBS' }, cardsEqual);
-        expect(newState.DECK.downturned).toExclude({ rank:'Q', suit:'CLUBS' }, cardsEqual);
-
+        expect(newState.DECK.upturned).toContainEqual({ rank:'2', suit:'CLUBS' });
+        expect(newState.DECK.upturned).toContainEqual({ rank:'Q', suit:'CLUBS' });
+        expect(newState.DECK.downturned).not.toContainEqual({ rank:'Q', suit:'CLUBS' });
     });
 });
 
