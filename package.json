@@ -21,12 +21,13 @@
   "dependencies": {
     "immutable": "^3.7.5",
     "lodash": "^3.10.1",
-    "react": "^0.14.0-rc1",
+    "prop-types": "^15.6.0",
+    "react": "^16.2.0",
     "react-dnd": "^2.0.2",
     "react-dnd-html5-backend": "^2.0.0",
-    "react-dom": "^0.14.0-rc1",
-    "react-prefixer": "^1.1.4",
-    "react-redux": "^3.1.0",
+    "react-dom": "^16.2.0",
+    "react-prefixer": "^2.0.0",
+    "react-redux": "^5.0.6",
     "redux": "^3.0.2"
   },
   "devDependencies": {

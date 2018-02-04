@@ -1,4 +1,5 @@
-import React, { PropTypes as T } from 'react';
+import React from 'react';
+import T from 'prop-types';
 import RankSymbol from './RankSymbol.jsx';
 import { Colors, Dimensions, CardsLayouts } from '../../constants';
 
