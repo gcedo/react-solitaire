@@ -57,7 +57,7 @@
     "redbox-react": "^1.0.1",
     "redux-devtools": "^3.4.1",
     "redux-devtools-dock-monitor": "^1.1.3",
-    "redux-slider-monitor": "^1.0.7",
+    "redux-slider-monitor": "^2.0.0-1",
     "rimraf": "^2.4.3",
     "unexpected": "^10.0.2",
     "unexpected-react-shallow": "^0.7.0",
