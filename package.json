@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node devServer.js",
     "build:webpack": "NODE_ENV=production webpack --config webpack.config.prod.js",
-    "test": "mocha --compilers js:babel-register --recursive",
+    "test": "mocha --require babel-core/register --recursive",
     "test:watch": "npm test -- --watch",
     "coverage": "cross-env NODE_ENV=test nyc -- npm test",
     "coveralls": "cross-env NODE_ENV=test nyc report --reporter=lcov && coveralls < ./coverage/lcov.info && rm -rf ./coverage"
