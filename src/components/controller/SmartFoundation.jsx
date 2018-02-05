@@ -3,7 +3,7 @@ import T from 'prop-types';
 import Foundation from '../display/Foundation.jsx';
 import ActionCreators, { Directions } from '../../actions';
 import DraggableCard from './DraggableCard.jsx';
-import first from 'lodash/array/first';
+import first from "lodash/first";
 import { Suits } from '../../constants';
 import { DropTarget } from 'react-dnd';
 

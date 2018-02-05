@@ -4,7 +4,7 @@ import SmartPile from  './SmartPile.jsx';
 import SmartFoundation from './SmartFoundation.jsx';
 import { DragDropContext } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
-import range from 'lodash/utility/range';
+import range from "lodash/range";
 import { connect } from 'react-redux';
 import ActionCreators from '../../actions';
 import { Colors, Dimensions } from '../../constants';

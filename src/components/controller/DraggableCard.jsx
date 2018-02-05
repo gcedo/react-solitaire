@@ -5,7 +5,7 @@ import { Ranks, Suits, RanksValues, Places, Colors } from '../../constants';
 import { DragSource, DropTarget } from 'react-dnd';
 import ActionCreators from '../../actions';
 import { connect } from 'react-redux';
-import first from 'lodash/array/first';
+import first from "lodash/first";
 
 const cardSource = {
   beginDrag(props) {
