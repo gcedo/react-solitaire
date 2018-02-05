@@ -6,7 +6,7 @@ import UpturnedCard from '../display/UpturnedCard.jsx';
 import Deck from '../display/Deck.jsx';
 import { List } from 'immutable';
 import DraggableCard from './DraggableCard.jsx';
-import last from "lodash/last";
+import last from 'lodash/last';
 import { Places } from '../../constants';
 
 class SmartDeck extends React.Component {
