@@ -1,4 +1,5 @@
-import React, { PropTypes as T } from 'react';
+import React from 'react';
+import T from 'prop-types';
 import Card from '../display/Card.jsx';
 import { Ranks, Suits, RanksValues, Places, Colors } from '../../constants';
 import { DragSource, DropTarget } from 'react-dnd';

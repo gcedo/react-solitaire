@@ -1,4 +1,5 @@
-import React, { PropTypes as T } from 'react';
+import React from 'react';
+import T from 'prop-types';
 import Pile from '../display/Pile.jsx';
 import { List } from 'immutable';
 import Card from '../display/Card.jsx';

@@ -1,4 +1,5 @@
-import React, { PropTypes as T } from 'react';
+import React from 'react';
+import T from 'prop-types';
 import Foundation from '../display/Foundation.jsx';
 import ActionCreators, { Directions } from '../../actions';
 import DraggableCard from './DraggableCard.jsx';

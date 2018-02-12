@@ -1,4 +1,5 @@
-import React, { PropTypes as T } from 'react';
+import React from 'react';
+import T from 'prop-types';
 import Card from '../display/Card.jsx';
 import { Suits, Ranks } from '../../constants';
 import UpturnedCard from '../display/UpturnedCard.jsx';
