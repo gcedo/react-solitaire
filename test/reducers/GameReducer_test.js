@@ -5,9 +5,9 @@ import { ActionTypes as types } from '../../src/constants';
 import TestActions from './TestActions.js';
 import initialState from './initialState.js';
 import { Suits, Ranks } from '../../src/constants';
-import flatten from 'lodash/array/flatten';
-import where from 'lodash/collection/where';
-import omit from 'lodash/object/omit';
+import flatten from 'lodash/flatten';
+import filter from 'lodash/filter';
+import omit from 'lodash/omit';
 
 const getNewState = state => action => reducer(state, action).game.toJS();
 const getNewGame = getNewState(initialState);
@@ -24,7 +24,7 @@ describe('Initial State', function () {
         expect(dealtDeck.length).toBe(Object.keys(Suits).length * Ranks.length);
         expect(
             OrderedDeck.every(
-                card => where(dealtDeck, omit(card, 'upturned')).length
+                card => filter(dealtDeck, omit(card, 'upturned')).length
             )
         ).toBe(true);
     });

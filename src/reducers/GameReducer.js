@@ -1,10 +1,10 @@
 import { Directions } from '../actions';
 import Immutable, { Map, List } from 'immutable';
 import { Suits, Ranks, Places, ActionTypes } from '../constants';
-import range from 'lodash/utility/range';
-import shuffle from 'lodash/collection/shuffle';
-import first from 'lodash/array/first';
-import flatten from 'lodash/array/flatten';
+import range from 'lodash/range';
+import shuffle from 'lodash/shuffle';
+import first from 'lodash/first';
+import flatten from 'lodash/flatten';
 
 export const OrderedDeck = flatten(
     Object.keys(Suits).map(suit => Ranks.map(rank => ({ rank, suit })))
