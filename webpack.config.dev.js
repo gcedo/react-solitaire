@@ -3,6 +3,7 @@ var webpack = require('webpack');
 
 module.exports = {
   devtool: 'eval',
+  mode: 'development',
   entry: [
     'webpack-hot-middleware/client?reload=true',
     './src/index'
@@ -17,13 +18,16 @@ module.exports = {
     new webpack.NoEmitOnErrorsPlugin()
   ],
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.jsx?$/,
-        loaders: ['babel-loader'],
+        use: 'babel-loader',
         include: path.join(__dirname, 'src')
       },
-      {test: /\.(png|jpg)$/, loader: 'url-loader?limit=8192'}
+      {
+        test: /\.(png|jpg)$/, 
+        use: 'url-loader?limit=8192'
+      }
     ]
   }
 };

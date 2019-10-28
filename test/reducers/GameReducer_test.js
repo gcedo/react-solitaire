@@ -51,11 +51,11 @@ describe('MOVE_CARD', () => {
         const newState = getNewGame(TestActions.PILE_TO_PILE);
         expect(
             newState.PILE[5]
-        ).toContain(TestActions.PILE_TO_PILE.payload.cards[0]);
+        ).toContainEqual(TestActions.PILE_TO_PILE.payload.cards[0]);
 
         expect(
             newState.PILE[3]
-        ).not.toContain(TestActions.PILE_TO_PILE.payload.cards[0])
+        ).not.toContainEqual(TestActions.PILE_TO_PILE.payload.cards[0])
     });
 
     it('should handle from PILE to PILE, multiple cards');
@@ -64,10 +64,10 @@ describe('MOVE_CARD', () => {
         const newState = getNewGame(TestActions.FOUNDATION_TO_PILE);
         expect(
             newState.PILE[2]
-        ).toContain(TestActions.FOUNDATION_TO_PILE.payload.cards[0]);
+        ).toContainEqual(TestActions.FOUNDATION_TO_PILE.payload.cards[0]);
         expect(
             newState.FOUNDATION.CLUBS
-        ).not.toContain(TestActions.FOUNDATION_TO_PILE.payload.cards[0]);
+        ).not.toContainEqual(TestActions.FOUNDATION_TO_PILE.payload.cards[0]);
 
     });
 
@@ -75,7 +75,7 @@ describe('MOVE_CARD', () => {
         const newState = getNewGame(TestActions.DECK_TO_PILE);
         expect(
             newState.PILE[5]
-        ).toContain(TestActions.DECK_TO_PILE.payload.cards[0]);
+        ).toContainEqual(TestActions.DECK_TO_PILE.payload.cards[0]);
         expect(
             newState.DECK.upturned
         ).not.toContain(TestActions.DECK_TO_PILE.payload.cards[0]);
@@ -88,13 +88,13 @@ describe('MOVE_CARD', () => {
         const newState = getNewGame(TestActions.DECK_TO_FOUNDATION);
         expect(
             newState.FOUNDATION.CLUBS
-        ).toContain(TestActions.DECK_TO_FOUNDATION.payload.cards[0]);
+        ).toContainEqual(TestActions.DECK_TO_FOUNDATION.payload.cards[0]);
         expect(
             newState.DECK.upturned
-        ).not.toContain(TestActions.DECK_TO_FOUNDATION.payload.cards[0]);
+        ).not.toContainEqual(TestActions.DECK_TO_FOUNDATION.payload.cards[0]);
         expect(
             newState.DECK.downturned
-        ).not.toContain(TestActions.DECK_TO_FOUNDATION.payload.cards[0]);
+        ).not.toContainEqual(TestActions.DECK_TO_FOUNDATION.payload.cards[0]);
     });
 
 });
